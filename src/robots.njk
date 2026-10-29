@@ -1,0 +1,9 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+---
+User-agent: *
+{% if build.preview %}Disallow: /{% else %}Allow: /
+Disallow: /widget/{% endif %}
+
+Sitemap: {{ "/sitemap.xml" | absolute }}

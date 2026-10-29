@@ -1,0 +1,21 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>{{ "/" | absolute }}</loc>{% if collections.posts.length %}<lastmod>{{ collections.posts[0].data.dateModified or (collections.posts[0].date | dateIso) }}</lastmod>{% endif %}</url>
+  {%- for post in collections.posts %}{% if not post.data.draft %}
+  <url><loc>{{ post.url | absolute }}</loc><lastmod>{{ post.data.dateModified or (post.date | dateIso) }}</lastmod></url>
+  {%- endif %}{% endfor %}
+  {%- if collections.seriesList.length %}
+  <url><loc>{{ "/series/" | absolute }}</loc></url>
+  {%- for s in collections.seriesList %}
+  <url><loc>{{ ("/series/" + s.slug + "/") | absolute }}</loc></url>
+  {%- endfor %}{% endif %}
+  {%- if collections.topicList.length %}
+  <url><loc>{{ "/tags/" | absolute }}</loc></url>
+  {%- for t in collections.topicList %}
+  <url><loc>{{ ("/tags/" + t.slug + "/") | absolute }}</loc></url>
+  {%- endfor %}{% endif %}
+</urlset>

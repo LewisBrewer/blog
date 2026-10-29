@@ -1,0 +1,62 @@
+---
+layout: layouts/base.njk
+---
+{%- set nav = collections.seriesList | seriesNav(seriesSlug, page.url) -%}
+<article class="post" id="top">
+  {%- if draft %}
+  <p class="draft-banner">Draft. Only visible in preview builds.</p>
+  {%- endif %}
+  <header class="post-head">
+    {%- if nav %}
+    <a class="series-label" href="/series/{{ nav.slug }}/">{{ nav.name }}<span> · Part {{ nav.position }}</span></a>
+    {%- endif %}
+    <h1 class="post-title">{{ title }}</h1>
+    <p class="post-meta">
+      <time datetime="{{ date | dateIso }}">{{ date | dateLong }}</time>
+      <span>{{ readingMinutes }} min read</span>
+      {%- if dateModified and dateModified != (date | dateIso) %}
+      <span>Updated <time datetime="{{ dateModified }}">{{ dateModified | dateLong }}</time></span>
+      {%- endif %}
+    </p>
+    {%- if topics.length %}
+    <ul class="tag-list" aria-label="Tags">
+      {%- for t in topics %}<li><a href="/tags/{{ t | slug }}/">{{ t }}</a></li>{% endfor %}
+    </ul>
+    {%- endif %}
+  </header>
+
+  <div class="prose">
+{{ content | safe }}
+  </div>
+
+  {%- if nav and nav.total > 1 %}
+  <nav class="series-nav" aria-label="{{ nav.name }}">
+    <p class="series-nav-label"><a href="/series/{{ nav.slug }}/">{{ nav.name }}</a>, part {{ nav.position }} of {{ nav.total }}</p>
+    <div class="series-nav-links">
+      {%- if nav.prev %}<a class="prev" href="{{ nav.prev.url }}"><span>Previous</span>{{ nav.prev.data.title }}</a>{% else %}<span></span>{% endif %}
+      {%- if nav.next %}<a class="next" href="{{ nav.next.url }}"><span>Next</span>{{ nav.next.data.title }}</a>{% endif %}
+    </div>
+  </nav>
+  {%- endif %}
+
+  {%- if site.giscus.repo and site.giscus.repoId and site.giscus.categoryId and not build.preview and not draft %}
+  <section class="comments" id="comments" aria-label="Comments">
+    <h2 class="comments-title">Comments</h2>
+    <script src="https://giscus.app/client.js"
+      data-repo="{{ site.giscus.repo }}"
+      data-repo-id="{{ site.giscus.repoId }}"
+      data-category="{{ site.giscus.category }}"
+      data-category-id="{{ site.giscus.categoryId }}"
+      data-mapping="pathname"
+      data-strict="1"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="{{ site.url }}/assets/css/giscus.css"
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async></script>
+  </section>
+  {%- endif %}
+</article>

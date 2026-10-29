@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: collections.seriesList
+  size: 1
+  alias: s
+permalink: "/series/{{ s.slug }}/"
+eleventyComputed:
+  title: "{{ s.name }}"
+  description: "Every part of {{ s.name }}, in order."
+---
+<section class="list-head">
+  <p class="eyebrow"><a href="/series/">Series</a></p>
+  <h1 class="list-title">{{ s.name }}</h1>
+  <p class="list-sub">{{ s.posts.length }} part{{ "s" if s.posts.length != 1 }}, oldest first</p>
+</section>
+<ol class="series-list">
+  {%- for post in s.posts %}
+  <li>
+    <a href="{{ post.url }}">
+      <span class="series-num">{{ loop.index }}</span>
+      <span class="series-title">{{ post.data.title }}</span>
+      <time datetime="{{ post.date | dateIso }}">{{ post.date | dateShort }}</time>
+    </a>
+  </li>
+  {%- endfor %}
+</ol>

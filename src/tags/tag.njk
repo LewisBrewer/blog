@@ -1,0 +1,20 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: collections.topicList
+  size: 1
+  alias: topic
+permalink: "/tags/{{ topic.slug }}/"
+eleventyComputed:
+  title: "Posts tagged {{ topic.name }}"
+  description: "Every post on {{ site.blogName }} tagged {{ topic.name }}."
+---
+{%- from "partials/cards.njk" import row -%}
+<section class="list-head">
+  <p class="eyebrow"><a href="/tags/">Tags</a></p>
+  <h1 class="list-title">{{ topic.name }}</h1>
+  <p class="list-sub">{{ topic.posts.length }} post{{ "s" if topic.posts.length != 1 }}</p>
+</section>
+<div class="post-list">
+  {%- for post in topic.posts %}{{ row(post) }}{% endfor %}
+</div>

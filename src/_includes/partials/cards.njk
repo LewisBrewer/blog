@@ -1,0 +1,43 @@
+{% macro picture(cover, sizes, eager) -%}
+{%- if cover.avif -%}
+<picture>
+  <source type="image/avif" srcset="{{ cover.avif }}" sizes="{{ sizes }}">
+  <source type="image/webp" srcset="{{ cover.webp }}" sizes="{{ sizes }}">
+  <img src="{{ cover.src }}" alt="" width="{{ cover.width }}" height="{{ cover.height }}" {% if eager %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
+</picture>
+{%- else -%}
+<img src="{{ cover.src }}" alt="" width="{{ cover.width }}" height="{{ cover.height }}" loading="lazy" decoding="async">
+{%- endif -%}
+{%- endmacro %}
+
+{% macro meta(post) -%}
+<p class="card-meta"><time datetime="{{ post.date | dateIso }}">{{ post.date | dateLong }}</time>{% if post.data.series %}<span>{{ post.data.series }}</span>{% endif %}{% if post.data.draft %}<span class="is-draft">Draft</span>{% endif %}</p>
+{%- endmacro %}
+
+{# The newest post, shown big at the top of the home page. #}
+{% macro featured(post) -%}
+<article class="featured">
+  <a class="featured-link" href="{{ post.url }}">
+    {%- if post.data.cover %}<div class="featured-media">{{ picture(post.data.cover, "(min-width: 1100px) 1040px, 100vw", true) }}</div>{% endif %}
+    <div class="featured-text">
+      {{ meta(post) }}
+      <h2 class="featured-title">{{ post.data.title }}</h2>
+      <p class="card-summary">{{ post.data.summary }}</p>
+    </div>
+  </a>
+</article>
+{%- endmacro %}
+
+{# A row in a list of posts. #}
+{% macro row(post) -%}
+<article class="row">
+  <a class="row-link" href="{{ post.url }}">
+    <div class="row-text">
+      {{ meta(post) }}
+      <h2 class="row-title">{{ post.data.title }}</h2>
+      <p class="card-summary">{{ post.data.summary }}</p>
+    </div>
+    {%- if post.data.cover %}<div class="row-media">{{ picture(post.data.cover, "(min-width: 760px) 320px, 100vw") }}</div>{% endif %}
+  </a>
+</article>
+{%- endmacro %}

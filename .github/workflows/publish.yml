@@ -1,0 +1,109 @@
+name: Publish blog
+
+on:
+  # Every day at about 6:15am in Melbourne (5:15am in winter). GitHub's clock is UTC.
+  schedule:
+    - cron: '17 19 * * *'
+  # The "Run workflow" button on the Actions tab.
+  workflow_dispatch:
+    inputs:
+      preview:
+        description: 'Preview only: build everything, drafts included, as a download. Publishes nothing.'
+        type: boolean
+        default: false
+      force:
+        description: 'Re-convert every post, even ones that have not changed'
+        type: boolean
+        default: false
+      allow_removals:
+        description: 'Allow more than 2 posts to be taken down in one run'
+        type: boolean
+        default: false
+  # Changes to the site's code (templates, styles) go live straight away.
+  push:
+    branches: [main]
+    paths-ignore: ['**.md', 'docs/**']
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  issues: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PREVIEW: ${{ inputs.preview == true && 'true' || 'false' }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Turn Google Docs into posts
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          DRIVE_FOLDER_ID: ${{ secrets.DRIVE_FOLDER_ID }}
+          GITHUB_TOKEN: ${{ github.token }}
+          FORCE: ${{ inputs.force == true && 'true' || 'false' }}
+          ALLOW_REMOVALS: ${{ inputs.allow_removals == true && 'true' || 'false' }}
+        run: npm run sync
+
+      - name: Save new and changed posts
+        if: env.PREVIEW != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A src/posts src/media src/_data/redirects.json data
+          # GitHub pauses scheduled jobs in repos with no commits for 60 days,
+          # so leave a small heartbeat if nothing has changed in a while.
+          last=$(git log -1 --format=%ct)
+          if git diff --cached --quiet && [ $(( $(date +%s) - last )) -gt $(( 45 * 86400 )) ]; then
+            date -u +%F > data/heartbeat.txt
+            git add data/heartbeat.txt
+          fi
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish posts $(date -u +%F)"
+            git pull --rebase --quiet && git push
+          fi
+
+      - name: Build the site
+        run: npm run build
+
+      - name: Make the preview open from a folder
+        if: env.PREVIEW == 'true'
+        run: node scripts/relativize.mjs _site
+
+      - name: Upload preview
+        if: env.PREVIEW == 'true'
+        uses: actions/upload-artifact@v6
+        with:
+          name: blog-preview
+          path: _site
+          retention-days: 7
+
+      - name: Upload site
+        if: env.PREVIEW != 'true'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    if: ${{ inputs.preview != true }}
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

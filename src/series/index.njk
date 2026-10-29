@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+permalink: /series/
+title: Series
+description: Every series on the dev log.
+---
+<section class="list-head">
+  <h1 class="list-title">Series</h1>
+</section>
+{%- if collections.seriesList.length %}
+<ul class="index-list">
+  {%- for s in collections.seriesList %}
+  <li><a href="/series/{{ s.slug }}/"><span class="index-name">{{ s.name }}</span><span class="index-count">{{ s.posts.length }}</span></a></li>
+  {%- endfor %}
+</ul>
+{%- else %}
+<p class="empty">No series yet.</p>
+{%- endif %}

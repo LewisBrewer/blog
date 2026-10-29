@@ -1,0 +1,33 @@
+{
+  "title": "Lewis Brewer",
+  "blogName": "Dev log",
+  "description": "Progress notes from Lewis Brewer on Taua, a grand-strategy game set in Aotearoa New Zealand in 1810.",
+  "url": "https://blog.lewisbrewer.com",
+  "language": "en-NZ",
+  "locale": "en_NZ",
+  "timezone": "Australia/Melbourne",
+  "defaultSeries": "Taua dev log",
+  "author": {
+    "name": "Lewis Brewer",
+    "url": "https://www.lewisbrewer.com",
+    "jobTitle": "Motion designer and game developer",
+    "sameAs": [
+      "https://www.lewisbrewer.com",
+      "https://www.instagram.com/lewbrew/",
+      "https://www.linkedin.com/in/lewisbrewer/"
+    ]
+  },
+  "portfolio": {
+    "home": "https://www.lewisbrewer.com",
+    "taua": "https://www.lewisbrewer.com",
+    "about": "https://www.lewisbrewer.com",
+    "contact": "mailto:brewer.lewis@gmail.com"
+  },
+  "giscus": {
+    "repo": "",
+    "repoId": "",
+    "category": "Announcements",
+    "categoryId": ""
+  },
+  "cloudflareAnalyticsToken": ""
+}

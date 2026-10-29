@@ -1,0 +1,22 @@
+{
+  "name": "lewisbrewer-blog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "blog.lewisbrewer.com: Taua dev log, built from Google Docs",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "sync": "node converter/sync.mjs",
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "test": "node test/run.mjs"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "3.1.7",
+    "@11ty/eleventy-plugin-rss": "3.1.0",
+    "google-auth-library": "11.3.2",
+    "sharp": "0.35.5"
+  }
+}

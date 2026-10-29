@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+permalink: /tags/
+title: Tags
+description: Every tag used on the dev log.
+---
+<section class="list-head">
+  <h1 class="list-title">Tags</h1>
+</section>
+{%- if collections.topicList.length %}
+<ul class="index-list">
+  {%- for t in collections.topicList %}
+  <li><a href="/tags/{{ t.slug }}/"><span class="index-name">{{ t.name }}</span><span class="index-count">{{ t.posts.length }}</span></a></li>
+  {%- endfor %}
+</ul>
+{%- else %}
+<p class="empty">No tags yet.</p>
+{%- endif %}

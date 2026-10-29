@@ -1,0 +1,41 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: collections.posts
+  size: 12
+  alias: posts
+  generatePageOnEmptyData: true
+permalink: "{% if pagination.pageNumber > 0 %}/page/{{ pagination.pageNumber + 1 }}/{% else %}/{% endif %}"
+eleventyComputed:
+  title: "{% if pagination.pageNumber > 0 %}Page {{ pagination.pageNumber + 1 }}{% endif %}"
+---
+{%- from "partials/cards.njk" import featured, row -%}
+{%- if pagination.pageNumber == 0 %}
+<section class="masthead">
+  <p class="eyebrow">{{ site.title }}</p>
+  <h1 class="display">{{ site.blogName }}</h1>
+  <p class="lede">{{ site.description }}</p>
+</section>
+{%- else %}
+<section class="list-head">
+  <h1 class="list-title">{{ site.blogName }}</h1>
+  <p class="list-sub">Page {{ pagination.pageNumber + 1 }}</p>
+</section>
+{%- endif %}
+
+{%- if posts.length %}
+<div class="post-list">
+  {%- for post in posts %}
+    {%- if loop.first and pagination.pageNumber == 0 %}{{ featured(post) }}{% else %}{{ row(post) }}{% endif %}
+  {%- endfor %}
+</div>
+{%- else %}
+<p class="empty">The first post is on its way.</p>
+{%- endif %}
+
+{%- if pagination.pages.length > 1 %}
+<nav class="pager" aria-label="Pages">
+  {%- if pagination.href.previous %}<a href="{{ pagination.href.previous }}">Newer posts</a>{% else %}<span></span>{% endif %}
+  {%- if pagination.href.next %}<a href="{{ pagination.href.next }}">Older posts</a>{% endif %}
+</nav>
+{%- endif %}
