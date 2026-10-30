@@ -32,8 +32,8 @@
       "slug": "core-loop",
       "title": "Core loop",
       "date": "2026-10-26",
-      "dateModified": "2026-10-26",
-      "contentHash": "4c455d235173",
+      "dateModified": "2026-10-30",
+      "contentHash": "733786327c60",
       "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
       "docName": "Taua_Blog_drafts",
       "tabIds": [
@@ -47,7 +47,7 @@
       "title": "Whenua",
       "date": "2026-10-30",
       "dateModified": "2026-10-30",
-      "contentHash": "863fba665b7a",
+      "contentHash": "788df93c9c96",
       "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
       "docName": "Taua_Blog_drafts",
       "tabIds": [
@@ -60,7 +60,7 @@
   "docs": {
     "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo": {
       "name": "Taua_Blog_drafts",
-      "modifiedTime": "2026-10-30T04:44:02.539Z"
+      "modifiedTime": "2026-10-30T04:58:39.028Z"
     }
   },
   "converterVersion": 1
