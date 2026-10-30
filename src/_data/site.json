@@ -24,10 +24,10 @@
     "contact": "mailto:brewer.lewis@gmail.com"
   },
   "giscus": {
-    "repo": "",
-    "repoId": "",
+    "repo": "YOUR-USERNAME/blog",
+    "repoId": "R_kgDOVcgaJA",
     "category": "Announcements",
-    "categoryId": ""
+    "categoryId": "DIC_kwDOVcgaJM4DJ95J"
   },
   "cloudflareAnalyticsToken": ""
 }
