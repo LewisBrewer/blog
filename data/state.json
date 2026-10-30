@@ -3,13 +3,55 @@
     "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.9xst9ej33qh6": {
       "slug": "draft",
       "title": "Concept",
-      "date": "2026-10-30",
+      "date": "2026-10-04",
       "dateModified": "2026-10-30",
-      "contentHash": "1e10859d3b91",
+      "contentHash": "3afa03eba7a3",
       "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
       "docName": "Taua_Blog_drafts",
       "tabIds": [
         "t.9xst9ej33qh6"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.0": {
+      "slug": "initial-scoping",
+      "title": "Initial scoping",
+      "date": "2026-10-12",
+      "dateModified": "2026-10-12",
+      "contentHash": "9f23c548fd6d",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.0"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.1ufhfsadp1mj": {
+      "slug": "core-loop",
+      "title": "Core loop",
+      "date": "2026-10-26",
+      "dateModified": "2026-10-26",
+      "contentHash": "4c455d235173",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.1ufhfsadp1mj"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.wq5ungj21pzn": {
+      "slug": "whenua",
+      "title": "Whenua",
+      "date": "2026-10-30",
+      "dateModified": "2026-10-30",
+      "contentHash": "863fba665b7a",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.wq5ungj21pzn"
       ],
       "sections": {},
       "oldSlugs": []
@@ -18,7 +60,7 @@
   "docs": {
     "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo": {
       "name": "Taua_Blog_drafts",
-      "modifiedTime": "2026-10-30T02:45:10.924Z"
+      "modifiedTime": "2026-10-30T04:44:02.539Z"
     }
   },
   "converterVersion": 1
