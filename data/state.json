@@ -1,5 +1,25 @@
 {
-  "posts": {},
-  "docs": {},
+  "posts": {
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.9xst9ej33qh6": {
+      "slug": "draft",
+      "title": "Concept",
+      "date": "2026-10-30",
+      "dateModified": "2026-10-30",
+      "contentHash": "1e10859d3b91",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.9xst9ej33qh6"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    }
+  },
+  "docs": {
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo": {
+      "name": "Taua_Blog_drafts",
+      "modifiedTime": "2026-10-30T02:41:32.404Z"
+    }
+  },
   "converterVersion": 1
 }
