@@ -3,9 +3,9 @@
     "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.9xst9ej33qh6": {
       "slug": "draft",
       "title": "Concept",
-      "date": "2026-10-04",
-      "dateModified": "2026-10-30",
-      "contentHash": "3afa03eba7a3",
+      "date": "2026-07-23",
+      "dateModified": "2026-11-01",
+      "contentHash": "53e5b384b188",
       "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
       "docName": "Taua_Blog_drafts",
       "tabIds": [
@@ -17,9 +17,9 @@
     "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.0": {
       "slug": "initial-scoping",
       "title": "Initial scoping",
-      "date": "2026-10-12",
-      "dateModified": "2026-10-12",
-      "contentHash": "9f23c548fd6d",
+      "date": "2026-07-31",
+      "dateModified": "2026-11-01",
+      "contentHash": "d2a65f8c8af4",
       "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
       "docName": "Taua_Blog_drafts",
       "tabIds": [
@@ -31,9 +31,9 @@
     "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.1ufhfsadp1mj": {
       "slug": "core-loop",
       "title": "Core loop",
-      "date": "2026-10-26",
-      "dateModified": "2026-10-30",
-      "contentHash": "733786327c60",
+      "date": "2026-10-25",
+      "dateModified": "2026-11-01",
+      "contentHash": "56d23c52eeab",
       "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
       "docName": "Taua_Blog_drafts",
       "tabIds": [
@@ -55,12 +55,166 @@
       ],
       "sections": {},
       "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.pa4e06q8336y": {
+      "slug": "ngapuhi-in-1810",
+      "title": "Ngāpuhi in 1810",
+      "date": "2026-08-06",
+      "dateModified": "2026-08-06",
+      "contentHash": "5b18ab2bff2a",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.pa4e06q8336y"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.qnnwysdweprl": {
+      "slug": "hongi-hika",
+      "title": "Hongi Hika",
+      "date": "2026-08-15",
+      "dateModified": "2026-08-15",
+      "contentHash": "5ab05a52c825",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.qnnwysdweprl"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.va9b8w1v5uzv": {
+      "slug": "te-hikutu",
+      "title": "Te Hikutū",
+      "date": "2026-08-20",
+      "dateModified": "2026-08-20",
+      "contentHash": "8da6fde3deb4",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.va9b8w1v5uzv"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.vnag42zbfi0c": {
+      "slug": "patuone-and-tamati-waka-nene",
+      "title": "Patuone and Tāmati Wāka Nene",
+      "date": "2026-08-28",
+      "dateModified": "2026-08-28",
+      "contentHash": "102cca5e8df3",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.vnag42zbfi0c"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.255seit9e2xh": {
+      "slug": "pomare-i-and-pomare-ii",
+      "title": "Pōmare I and Pōmare II",
+      "date": "2026-09-04",
+      "dateModified": "2026-09-04",
+      "contentHash": "41bacb1a8fde",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.255seit9e2xh"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.6vai23xq8wp8": {
+      "slug": "te-morenga",
+      "title": "Te Morenga",
+      "date": "2026-09-14",
+      "dateModified": "2026-09-14",
+      "contentHash": "51f0165af95e",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.6vai23xq8wp8"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.ogv024yo3hu1": {
+      "slug": "hone-heke-pokai",
+      "title": "Hōne Heke Pōkai",
+      "date": "2026-09-20",
+      "dateModified": "2026-09-20",
+      "contentHash": "f2970ddacb19",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.ogv024yo3hu1"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.kvv6dbyj499c": {
+      "slug": "te-whareumu-and-kiwikiwi",
+      "title": "Te Whareumu and Kiwikiwi",
+      "date": "2026-09-28",
+      "dateModified": "2026-09-28",
+      "contentHash": "3aa2e3d798ad",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.kvv6dbyj499c"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.dyo2k0d2pb0m": {
+      "slug": "titore",
+      "title": "Tītore",
+      "date": "2026-10-03",
+      "dateModified": "2026-10-03",
+      "contentHash": "8ece6efa0687",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.dyo2k0d2pb0m"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.4bdox3vr9u9e": {
+      "slug": "korokoro",
+      "title": "Korokoro",
+      "date": "2026-10-12",
+      "dateModified": "2026-10-12",
+      "contentHash": "81022b132936",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.4bdox3vr9u9e"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.e9sps2ssmrp7": {
+      "slug": "te-ruki-kawiti",
+      "title": "Te Ruki Kawiti",
+      "date": "2026-10-19",
+      "dateModified": "2026-10-19",
+      "contentHash": "5805afb54488",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.e9sps2ssmrp7"
+      ],
+      "sections": {},
+      "oldSlugs": []
     }
   },
   "docs": {
     "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo": {
       "name": "Taua_Blog_drafts",
-      "modifiedTime": "2026-10-30T12:07:00.435Z"
+      "modifiedTime": "2026-11-01T01:14:06.732Z"
     }
   },
   "converterVersion": 1
