@@ -41,15 +41,6 @@ body.tm { display: flex; flex-direction: column; font-size: 0.9375rem; line-heig
 .tm-search-open { display: none; }
 .tm-about-link { font-size: 0.8125rem; white-space: nowrap; }
 
-/* ── notice ── */
-.tm-notice { flex: none; display: flex; align-items: center; gap: 12px; padding: 8px var(--gutter); background: #1a0607; border-bottom: 1px solid rgba(209, 34, 41, 0.45); color: #f3dcdc; font-size: 0.8125rem; position: relative; z-index: 1100; }
-.tm-notice p { margin: 0; flex: 1; }
-.tm-notice b { color: #fff; font-weight: 600; letter-spacing: 0.01em; }
-.tm-notice .tm-icon { width: 28px; height: 28px; background: transparent; border-color: transparent; }
-.tm-notice.is-small .tm-long { display: none; }
-.tm-notice.is-small p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.tm-notice.is-small .tm-notice-close { display: none; }
-
 /* ── stage ── */
 .tm-stage { flex: 1; position: relative; min-height: 0; }
 .tm-map { position: absolute; inset: 0; background: #2e526c; font: inherit; }
@@ -180,9 +171,6 @@ body.tm { display: flex; flex-direction: column; font-size: 0.9375rem; line-heig
   .search-open .tm-search { display: block; }
   .search-open .tm-title, .search-open .tm-search-open { visibility: hidden; }
   .tm-search-open { display: inline-grid; margin-left: auto; }
-  .tm-notice { font-size: 0.75rem; padding: 6px var(--gutter); }
-  .tm-long { display: none; }
-  .tm-notice-close { display: none; }
   .tm-layers { top: auto; bottom: 14px; left: 12px; width: calc(100% - 24px); max-height: 62%; }
   .tm-layers:not(.is-open) { width: auto; }
   .tm-layers.is-open { z-index: 1002; }
@@ -201,7 +189,7 @@ body.tm { display: flex; flex-direction: column; font-size: 0.9375rem; line-heig
 }
 
 /* ── embedded in a post ── */
-.is-embed .tm-top, .is-embed .tm-notice { display: none; }
+.is-embed .tm-top { display: none; }
 .is-embed .tm-open-full { display: inline-flex; align-items: center; gap: 7px; position: absolute; top: 12px; right: 58px; z-index: 1000; height: 36px; padding: 0 12px; border: 1px solid var(--tm-line); border-radius: var(--tm-radius); background: var(--tm-panel); font-size: 0.78rem; text-decoration: none; color: var(--head); }
 .is-embed .tm-embed-note { display: block; position: absolute; left: 12px; bottom: 10px; z-index: 1000; margin: 0; padding: 4px 9px; border-radius: 4px; background: rgba(0, 0, 0, 0.72); font-size: 0.72rem; color: #f3dcdc; }
 .is-embed.has-panel .tm-embed-note { display: none; }

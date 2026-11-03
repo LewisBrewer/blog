@@ -548,9 +548,6 @@
   $$('[data-about]').forEach((b) => b.addEventListener('click', (e) => { e.preventDefault(); toggleAbout(true); }));
   $('#tm-about-close').addEventListener('click', () => toggleAbout(false));
   $('#tm-about').addEventListener('click', (e) => { if (e.target.id === 'tm-about') toggleAbout(false); });
-  const notice = $('#tm-notice');
-  try { if (localStorage.getItem('tauaMap.noticeSeen') === '1') notice.classList.add('is-small'); } catch (e) { /* ignore */ }
-  $('#tm-notice-close')?.addEventListener('click', () => { notice.classList.add('is-small'); try { localStorage.setItem('tauaMap.noticeSeen', '1'); } catch (e) { /* ignore */ } });
 
   // embed: wheel zoom only after the reader clicks into the map
   if (EMBED) {
