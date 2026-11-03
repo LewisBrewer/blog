@@ -41,6 +41,7 @@ if not exist "%CORE%\Settlements_v2\places.csv" (
 
 git config core.filemode false
 git config core.autocrlf true
+git config core.safecrlf false
 
 echo   1/3  Exporting the public map data
 %PY% map\export_public.py "%CORE%"
