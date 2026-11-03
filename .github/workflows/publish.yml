@@ -75,6 +75,11 @@ jobs:
             git commit -m "Publish posts $(date -u +%F)"
             git pull --rebase --quiet && git push
           fi
+      - name: Restore the built map
+        uses: actions/cache@v4
+        with:
+          path: map-build
+          key: map-${{ hashFiles('map-src/**', 'map/*.mjs', 'map/*.js', 'map/*.css', 'package-lock.json') }}
 
       - name: Build the site
         run: npm run build
