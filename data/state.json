@@ -46,8 +46,8 @@
       "slug": "whenua",
       "title": "Whenua",
       "date": "2026-10-30",
-      "dateModified": "2026-10-30",
-      "contentHash": "788df93c9c96",
+      "dateModified": "2026-11-03",
+      "contentHash": "43a3e45af1c6",
       "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
       "docName": "Taua_Blog_drafts",
       "tabIds": [
@@ -186,8 +186,8 @@
       "slug": "korokoro",
       "title": "Korokoro",
       "date": "2026-10-12",
-      "dateModified": "2026-11-01",
-      "contentHash": "c1bf18d3b534",
+      "dateModified": "2026-11-03",
+      "contentHash": "fe25769528de",
       "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
       "docName": "Taua_Blog_drafts",
       "tabIds": [
@@ -209,12 +209,54 @@
       ],
       "sections": {},
       "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.wvx0ikz9aj8q": {
+      "slug": "pa-kainga-and-the-human-map-the-data",
+      "title": "Pā, kāinga and the human map: the data",
+      "date": "2026-10-31",
+      "dateModified": "2026-10-31",
+      "contentHash": "963a6fe87b93",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.wvx0ikz9aj8q"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.4apnjh8fwtdg": {
+      "slug": "pa-kainga-and-the-human-map-in-play",
+      "title": "Pā, kāinga and the human map: in play",
+      "date": "2026-11-01",
+      "dateModified": "2026-11-01",
+      "contentHash": "7ba425da8f3f",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.4apnjh8fwtdg"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.vfs9zsus09za": {
+      "slug": "pa-kainga-and-the-human-map-the-art",
+      "title": "Pā, kāinga and the human map: the art",
+      "date": "2026-11-02",
+      "dateModified": "2026-11-02",
+      "contentHash": "cee91ed9b417",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.vfs9zsus09za"
+      ],
+      "sections": {},
+      "oldSlugs": []
     }
   },
   "docs": {
     "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo": {
       "name": "Taua_Blog_drafts",
-      "modifiedTime": "2026-11-01T03:18:24.142Z"
+      "modifiedTime": "2026-11-03T12:05:21.569Z"
     }
   },
   "converterVersion": 1

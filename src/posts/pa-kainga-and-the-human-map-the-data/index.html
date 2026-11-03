@@ -1,0 +1,114 @@
+---json
+{
+  "title": "Pā, kāinga and the human map: the data",
+  "summary": "What the game holds about pā, kāinga, gardens, tracks and the first Pākehā footholds in 1810, and how I built the settlement data from the sources.",
+  "date": "2026-10-31",
+  "topics": [
+    "pā",
+    "kāinga",
+    "map",
+    "research"
+  ],
+  "series": "Map",
+  "seriesSlug": "map",
+  "seriesAll": [
+    {
+      "name": "Map",
+      "slug": "map"
+    },
+    {
+      "name": "Taua dev log",
+      "slug": "taua-dev-log"
+    }
+  ],
+  "slug": "pa-kainga-and-the-human-map-the-data",
+  "permalink": "/pa-kainga-and-the-human-map-the-data/",
+  "cover": {
+    "src": "/media/pa-kainga-and-the-human-map-the-data/d965af63de-511.webp",
+    "thumb": "/media/pa-kainga-and-the-human-map-the-data/d965af63de-511.webp",
+    "avif": "/media/pa-kainga-and-the-human-map-the-data/d965af63de-511.avif 511w",
+    "webp": "/media/pa-kainga-and-the-human-map-the-data/d965af63de-511.webp 511w",
+    "width": 511,
+    "height": 415,
+    "alt": "",
+    "og": "/media/pa-kainga-and-the-human-map-the-data/d965af63de-og.jpg"
+  },
+  "wordCount": 1736,
+  "readingMinutes": 8,
+  "draft": false,
+  "source": {
+    "doc": "Taua_Blog_drafts",
+    "tab": "Pā, kāinga and the human map: the data"
+  },
+  "dateModified": "2026-10-31"
+}
+---
+<p>The Whenua post covered the land itself: forest, swamp, fern, rivers and the seasons. This post covers the marks people made on it by 1810. Pā and kāinga, gardens and food places, tracks and waka routes, and the first footholds Pākehā made on the coast. It is the first of three posts. This one covers what the data holds and how I built it. The next covers what each feature does in play, and the last covers how they will look on the map.</p>
+<figure class="figure"><picture><source type="image/avif" srcset="/media/pa-kainga-and-the-human-map-the-data/d965af63de-511.avif 511w" sizes="(min-width: 1100px) 1040px, 100vw"><source type="image/webp" srcset="/media/pa-kainga-and-the-human-map-the-data/d965af63de-511.webp 511w" sizes="(min-width: 1100px) 1040px, 100vw"><img src="/media/pa-kainga-and-the-human-map-the-data/d965af63de-511.webp" alt="A fortified town or village called a hippah, built on a perforated rock at Tolaga, by Thomas Morris and Herman Diedrich Spöring, from Cook's first voyage, 1769. Alexander Turnbull Library. Public domain." width="511" height="415" fetchpriority="high" decoding="async"></picture><figcaption><span class="caption">A fortified town or village called a hippah, built on a perforated rock at Tolaga, by Thomas Morris and Herman Diedrich Spöring, from Cook's first voyage, 1769. Alexander Turnbull Library. Public domain.</span></figcaption></figure>
+<h3 id="what-was-there-in-1810">What was there in 1810</h3>
+<p>The settlement table holds about 1,360 named places across both islands. Of those, 438 are pā, 301 are kāinga, 24 are kāinga with built defences, and 115 are anchorages. The rest are landmarks, resource places and sites unbuilt as of 1810.</p>
+<p>For January 1810 the game seats about 670 hapū holdings in the North Island, with close to 125,000 people between them. Te Tai Tokerau holds about 200 of the settled places on its own, and the further south you go the thinner the map gets. Part of that reflects where people lived, with population dropping as you move further south, but a lot is due to not having properly explored and mapped the data.</p>
+<figure class="figure"><picture><source type="image/avif" srcset="/media/pa-kainga-and-the-human-map-the-data/d657a71c57-640.avif 640w, /media/pa-kainga-and-the-human-map-the-data/d657a71c57-1048.avif 1048w" sizes="(min-width: 1100px) 1040px, 100vw"><source type="image/webp" srcset="/media/pa-kainga-and-the-human-map-the-data/d657a71c57-640.webp 640w, /media/pa-kainga-and-the-human-map-the-data/d657a71c57-1048.webp 1048w" sizes="(min-width: 1100px) 1040px, 100vw"><img src="/media/pa-kainga-and-the-human-map-the-data/d657a71c57-1048.webp" alt="Every place the game holds for 1810 in the North Island." width="1048" height="817" loading="lazy" decoding="async"></picture><figcaption><span class="caption">Every place the game holds for 1810 in the North Island.</span></figcaption></figure>
+<h3 id="pa-and-kainga">Pā and kāinga</h3>
+<p>Each place carries a type and a few physical numbers. The type is pā, kāinga, or kāinga with defences. Natural defence runs from 0 to 5 and measures how defensible is the ground that the structure is built on : a ridge spur, a headland, cliffs, swamp on three sides. Built defence runs from 0 to 3 and measures what additions are made: palisades, ditches, banks, fighting stages. A size tier runs from tiny to huge, and a garden score says how much cultivable land sits close by.</p>
+<p>The hardest question for every pā is whether anyone lived in it in 1810. The LINZ gazetteer names and locates hundreds of pā, but it gives no dates. A pā on a ridge might have stood empty for two hundred years by 1810, or its builders might raise it twenty years later. My rule is that an undated pā claims nothing. I record it as an empty site owned by the hapū whose land it sits on, with no population, and I link it to that hapū's nearest seat as a refuge. A source has to put people in a pā before the game does.</p>
+<p>Ruapekapeka shows why the rule matters. Kawiti built it in 1845, so in 1810 it is an empty site in Ngāti Hine country. Ōhaeawai is a Ngāti Rangi kāinga with no pā in 1810. The famous forms of both arrive with the war.</p>
+<figure class="figure"><picture><source type="image/avif" srcset="/media/pa-kainga-and-the-human-map-the-data/09cdbaabf0-586.avif 586w" sizes="(min-width: 1100px) 1040px, 100vw"><source type="image/webp" srcset="/media/pa-kainga-and-the-human-map-the-data/09cdbaabf0-586.webp 586w" sizes="(min-width: 1100px) 1040px, 100vw"><img src="/media/pa-kainga-and-the-human-map-the-data/09cdbaabf0-586.webp" alt="Augustus Earle, Village of Parkuni, River Hokianga, from his visit of 1827 and 1828, lithographed 1838. A pātaka on its stilts stands behind the group. Public domain." width="586" height="378" loading="lazy" decoding="async"></picture><figcaption><span class="caption">Augustus Earle, Village of Parkuni, River Hokianga, from his visit of 1827 and 1828, lithographed 1838. A pātaka on its stilts stands behind the group. Public domain.</span></figcaption></figure>
+<p>Sources fix mistakes as well as fill gaps. Crosby names Matara at lower Waihou in Hokianga as the Ngāti Pou pā of Te Tihi, which Hongi took in 1813. My data had seated Te Tihi's people at Mataraua, an inland place with a similar name. Matara now holds them.</p>
+<figure class="figure"><picture><source type="image/avif" srcset="/media/pa-kainga-and-the-human-map-the-data/6b3559a166-429.avif 429w" sizes="(min-width: 1100px) 1040px, 100vw"><source type="image/webp" srcset="/media/pa-kainga-and-the-human-map-the-data/6b3559a166-429.webp 429w" sizes="(min-width: 1100px) 1040px, 100vw"><img src="/media/pa-kainga-and-the-human-map-the-data/6b3559a166-429.webp" alt="Rangihoua Pā above Oihi in the Bay of Islands, home of Te Hikutū, where the first mission landed in 1814. Archives New Zealand, CC BY-SA 2.0." width="429" height="416" loading="lazy" decoding="async"></picture><figcaption><span class="caption">Rangihoua Pā above Oihi in the Bay of Islands, home of Te Hikutū, where the first mission landed in 1814. Archives New Zealand, CC BY-SA 2.0.</span></figcaption></figure>
+<h3 id="holdings-seats-and-rangatira">Holdings, seats and rangatira</h3>
+<p>A place is ground. The people on it sit in a second table, structured so that one place can hold several groups at once. A controlling hapū holds the place. Resident groups live there under its mana. Some rows record a hapū that held a place earlier and had left it by 1810. Each group carries a population, a flag for whether this is the hapū's principal seat, and the rangatira who holds it, linked to the whakapapa data.</p>
+<p>Every change to these tables goes into a decisions log, now past a hundred rulings. Some are small, such as raising Te Morenga's seat at Taiāmai from 35 people to 400 so he can fill the waka taua he is recorded to lead in the 1820s. Others move people. Tītore lived at Whakataha pā and Waimate in 1810. He took the Kororāreka beach twenty years later, so his household moved inland.</p>
+<p>Some seats stay empty on purpose. Where no source and no person in the whakapapa data fits, the seat waits. I'd rather show an empty seat than a wrong name.</p>
+<h3 id="gardens-and-food-places">Gardens and food places</h3>
+<p>Gardens sit at three levels in the data. Each kāinga has a garden score. Over 1,000 resource sites mark the ground that fed people:</p>
+<p>·         forests for timber</p>
+<p>·         mahinga kai</p>
+<p>·         fishing grounds and eel weirs</p>
+<p>·         harakeke swamps</p>
+<p>·         fertile river flats and kūmara grounds</p>
+<p>·         hot springs</p>
+<p>·         stone sources</p>
+<p>Beneath those, the land is cut into about 14,300 parcels, small blocks of ground with a customary hapū, a garden share, and shares of each resource.</p>
+<figure class="figure"><picture><source type="image/avif" srcset="/media/pa-kainga-and-the-human-map-the-data/25a51a29b6-293.avif 293w" sizes="(min-width: 1100px) 1040px, 100vw"><source type="image/webp" srcset="/media/pa-kainga-and-the-human-map-the-data/25a51a29b6-293.webp 293w" sizes="(min-width: 1100px) 1040px, 100vw"><img src="/media/pa-kainga-and-the-human-map-the-data/25a51a29b6-293.webp" alt="Charles Heaphy, Wata or provision house, at Otumatua on the north shore of Cook Strait, drawn 1840 and printed 1845. Public domain." width="293" height="416" loading="lazy" decoding="async"></picture><figcaption><span class="caption">Charles Heaphy, Wata or provision house, at Otumatua on the north shore of Cook Strait, drawn 1840 and printed 1845. Public domain.</span></figcaption></figure>
+<p>The parcels grow out from each 1810 holding across the terrain. Borders follow ridges, swamps and big rivers. Parcels run small near gardens and large in the bush. Each one records which hapū held it by custom, and later in the game it records any deal that changed its hands.</p>
+<figure class="figure"><picture><source type="image/avif" srcset="/media/pa-kainga-and-the-human-map-the-data/a4b7b15802-640.avif 640w, /media/pa-kainga-and-the-human-map-the-data/a4b7b15802-1257.avif 1257w" sizes="(min-width: 1100px) 1040px, 100vw"><source type="image/webp" srcset="/media/pa-kainga-and-the-human-map-the-data/a4b7b15802-640.webp 640w, /media/pa-kainga-and-the-human-map-the-data/a4b7b15802-1257.webp 1257w" sizes="(min-width: 1100px) 1040px, 100vw"><img src="/media/pa-kainga-and-the-human-map-the-data/a4b7b15802-1257.webp" alt="Parcels in the inland Bay of Islands, from Kaikohe east to Kororāreka and Waiōmio. Colours mark the customary hapū, dark lines mark the edge of each hapū's ground and pale lines mark the parcels inside it. Red dots are 1810 seats. Taua data and base map." width="1257" height="810" loading="lazy" decoding="async"></picture><figcaption><span class="caption">Parcels in the inland Bay of Islands, from Kaikohe east to Kororāreka and Waiōmio. Colours mark the customary hapū, dark lines mark the edge of each hapū's ground and pale lines mark the parcels inside it. Red dots are 1810 seats. Taua data and base map.</span></figcaption></figure>
+<figure class="figure"><picture><source type="image/avif" srcset="/media/pa-kainga-and-the-human-map-the-data/b437ec2d19-477.avif 477w" sizes="(min-width: 1100px) 1040px, 100vw"><source type="image/webp" srcset="/media/pa-kainga-and-the-human-map-the-data/b437ec2d19-477.webp 477w" sizes="(min-width: 1100px) 1040px, 100vw"><img src="/media/pa-kainga-and-the-human-map-the-data/b437ec2d19-477.webp" alt="Terraces and kūmara storage pits. Photo by Avenue, 2010, CC BY-SA 3.0." width="477" height="415" loading="lazy" decoding="async"></picture><figcaption><span class="caption">Terraces and kūmara storage pits. Photo by Avenue, 2010, CC BY-SA 3.0.</span></figcaption></figure>
+<h3 id="tracks-and-waka-routes">Tracks and waka routes</h3>
+<p>The data holds 572 routes. 404 are walking tracks, 90 are sea lanes along the coast, 71 are river routes, and 7 are portages where waka crossed the land between waters. I traced most of the walking tracks from a map of major tracks and water routes. The rivers come from LINZ river outlines, thinned to single channels, and I placed the rest by hand in the place editor.</p>
+<p>Two kinds of link sit on top of the routes. Each kāinga with no defences links to a pā where its people could take refuge, and there are now 129 of those links. Each anchorage links to the settlements it served, 264 links in all. Together they say where a hapū runs when a taua comes, and where its goods reach the sea.</p>
+<figure class="figure"><picture><source type="image/avif" srcset="/media/pa-kainga-and-the-human-map-the-data/91709ddb00-586.avif 586w" sizes="(min-width: 1100px) 1040px, 100vw"><source type="image/webp" srcset="/media/pa-kainga-and-the-human-map-the-data/91709ddb00-586.webp 586w" sizes="(min-width: 1100px) 1040px, 100vw"><img src="/media/pa-kainga-and-the-human-map-the-data/91709ddb00-586.webp" alt="Tracks, river routes, sea lanes and portages in Te Tai Tokerau, with 1810 settlements. The long portage near the bottom runs from Tangiterōria on the Northern Wairoa to Maungatapere, toward the Whangārei harbour. Taua data and base map." width="586" height="490" loading="lazy" decoding="async"></picture><figcaption><span class="caption">Tracks, river routes, sea lanes and portages in Te Tai Tokerau, with 1810 settlements. The long portage near the bottom runs from Tangiterōria on the Northern Wairoa to Maungatapere, toward the Whangārei harbour. Taua data and base map.</span></figcaption></figure>
+<figure class="figure"><picture><source type="image/avif" srcset="/media/pa-kainga-and-the-human-map-the-data/9291808664-586.avif 586w" sizes="(min-width: 1100px) 1040px, 100vw"><source type="image/webp" srcset="/media/pa-kainga-and-the-human-map-the-data/9291808664-586.webp 586w" sizes="(min-width: 1100px) 1040px, 100vw"><img src="/media/pa-kainga-and-the-human-map-the-data/9291808664-586.webp" alt="Augustus Earle, A war speech, Bay of Islands, from his visit of 1827 and 1828. Waka taua drawn up on the beach. Public domain." width="586" height="372" loading="lazy" decoding="async"></picture><figcaption><span class="caption">Augustus Earle, A war speech, Bay of Islands, from his visit of 1827 and 1828. Waka taua drawn up on the beach. Public domain.</span></figcaption></figure>
+<h3 id="pakeha-footholds">Pākehā footholds</h3>
+<p>In 1810 the Pākehā presence is ships at anchor. The data marks 115 anchorages with their shelter, depth and bar hazard, and flags three where ships traded in 1810. Shore footholds arrive later, each with a rough start year:</p>
+<p>·         1814: the Church Missionary Society at Rangihoua</p>
+<p>·         1819: Kerikeri</p>
+<p>·         1823: Paihia, and the Wesleyans at Wesleydale</p>
+<p>·         1825: Sydney traders at Kororāreka</p>
+<p>·         1826: the Deptford shipyard at Hōreke</p>
+<p>·         1827: the Wesleyans at Mangungu</p>
+<p>·         1830: Te Waimate</p>
+<p>·         1839: the Catholic mission at Kororāreka</p>
+<figure class="figure"><picture><source type="image/avif" srcset="/media/pa-kainga-and-the-human-map-the-data/0829271adb-577.avif 577w" sizes="(min-width: 1100px) 1040px, 100vw"><source type="image/webp" srcset="/media/pa-kainga-and-the-human-map-the-data/0829271adb-577.webp 577w" sizes="(min-width: 1100px) 1040px, 100vw"><img src="/media/pa-kainga-and-the-human-map-the-data/0829271adb-577.webp" alt="The Stone Store and the Kemp House at Kerikeri, photographed by Albert Percy Godber in 1912. Both stand on the 1819 mission ground. Alexander Turnbull Library. Public domain." width="577" height="416" loading="lazy" decoding="async"></picture><figcaption><span class="caption">The Stone Store and the Kemp House at Kerikeri, photographed by Albert Percy Godber in 1912. Both stand on the 1819 mission ground. Alexander Turnbull Library. Public domain.</span></figcaption></figure>
+<p>Land deals follow the footholds. The first in my data is the mission ground at Oihi below Rangihoua, which Te Hikutū granted in February 1815 for twelve axes. Each deal carries a footprint, a grantor hapū and a recipient, and the parcels it covers change hands in play.</p>
+<figure class="figure"><picture><source type="image/avif" srcset="/media/pa-kainga-and-the-human-map-the-data/d06d9a6bdb-441.avif 441w" sizes="(min-width: 1100px) 1040px, 100vw"><source type="image/webp" srcset="/media/pa-kainga-and-the-human-map-the-data/d06d9a6bdb-441.webp 441w" sizes="(min-width: 1100px) 1040px, 100vw"><img src="/media/pa-kainga-and-the-human-map-the-data/d06d9a6bdb-441.webp" alt="Old Land Claims Commission tracing of the Paihia mission lands. Tracings like this one record the deals, the boundaries and the names of the sellers. Archives New Zealand, CC BY-SA 2.0." width="441" height="416" loading="lazy" decoding="async"></picture><figcaption><span class="caption">Old Land Claims Commission tracing of the Paihia mission lands. Tracings like this one record the deals, the boundaries and the names of the sellers. Archives New Zealand, CC BY-SA 2.0.</span></figcaption></figure>
+<h3 id="how-a-place-gets-in">How a place gets in</h3>
+<p>Each place records where its position came from, so I can judge how far to trust it. About 500 sit on a LINZ gazetteer entry, either a named pā or a locality I matched to the source. About 160 come from Crosby's The Musket Wars, about 150 from W. A. Taylor's Lore and History of the South Island Maori, and about 80 I tweaked by hand. About 100 are still estimates. Anne Salmond's maps of Bay of Islands chiefs in Between Worlds tie hapū and rangatira to pā for the years around 1810. The Tribunal's district reports, the Old Land Claims files and Turton's deeds fill in who held what.</p>
+<h3 id="image-credits">Image credits</h3>
+<p>·         Thomas Morris and Herman Diedrich Spöring, A fortified town or village called a hippah, 1769. Alexander Turnbull Library. Public domain, via Wikimedia Commons.</p>
+<p>·         Augustus Earle, Village of Parkuni, River Hokianga, R. Martin &amp; Co, 1838. Public domain, via Wikimedia Commons.</p>
+<p>·         Rangihoua Pā, Pēwhairangi. Archives New Zealand. CC BY-SA 2.0, via Wikimedia Commons.</p>
+<p>·         Charles Heaphy, Wata or provision house, at Otumatua, Smith, Elder, 1845. Alexander Turnbull Library. Public domain, via Wikimedia Commons.</p>
+<p>·         Avenue, Maori terraces and kumara pits on Big King, Auckland, 2010. CC BY-SA 3.0, via Wikimedia Commons.</p>
+<p>·         Augustus Earle, A war speech. Public domain, via Wikimedia Commons.</p>
+<p>·         Albert Percy Godber, View of Kerikeri, showing the Stone Store and the Kemp House, 1912. Alexander Turnbull Library. Public domain, via Wikimedia Commons.</p>
+<p>·         Paihia Old Land Claims Commission tracing. Archives New Zealand. CC BY-SA 2.0, via Wikimedia Commons.</p>
+<p>·         Maps: Taua data and base map.</p>
+<h3 id="sources">Sources</h3>
+<p>·         R. D. Crosby, The Musket Wars: A History of Inter-Iwi Conflict 1806 to 1845, 1999.</p>
+<p>·         Anne Salmond, Between Worlds: Early Exchanges between Maori and Europeans, 1773 to 1815, 1997.</p>
+<p>·         W. A. Taylor, Lore and History of the South Island Maori, 1950.</p>
+<p>·         LINZ New Zealand Gazetteer.</p>
+<p>·         Waitangi Tribunal district inquiry reports and research, including Wai 1040 Te Paparahi o Te Raki.</p>
+<p>·         H. Hanson Turton, Maori Deeds of Old Private Land Purchases in New Zealand, 1882.</p>
+<p>·         Old Land Claims files, Archives New Zealand.</p>
