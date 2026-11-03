@@ -271,8 +271,8 @@ async function main() {
 
   const vendor = path.join(OUT, 'vendor');
   mkdir(vendor);
-  const ld = path.join(ROOT, 'node_modules', 'leaflet', 'dist');
-  for (const f of ['leaflet.js', 'leaflet.css']) fs.copyFileSync(path.join(ld, f), path.join(vendor, f));
+  // Leaflet 1.9.4 is kept in map/vendor so the map never depends on node_modules.
+  for (const f of ['leaflet.js', 'leaflet.css', 'LEAFLET-LICENSE.txt']) fs.copyFileSync(path.join(HERE, 'vendor', f), path.join(vendor, f));
   for (const f of ['viewer.js', 'map.css']) fs.copyFileSync(path.join(HERE, f), path.join(OUT, f));
   fs.writeFileSync(stamp, hash);
   console.log(`map: done in ${((Date.now() - t0) / 1000).toFixed(0)} s`);
