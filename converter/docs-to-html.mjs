@@ -315,6 +315,9 @@ function captionParts(segments) {
   return [segments, []];
 }
 
+// A link to the Taua map (copied from its "Copy a link" button) becomes an embedded map.
+const MAP_LINK = /^(?:https?:\/\/blog\.lewisbrewer\.com)?\/map\/?(?:index\.html)?(\?[^#\s]*)?$/;
+
 const VIDEO = [
   { re: /(?:youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{11})/, provider: 'youtube' },
   { re: /vimeo\.com\/(?:video\/)?(\d+)/, provider: 'vimeo' },
@@ -347,6 +350,13 @@ function postProcess(blocks, ctx) {
       const linked = b.segments.filter((s) => s.text && s.text.trim());
       const url = linked[0]?.link?.kind === 'url' ? linked[0].link.url : /^https?:\/\/\S+$/.test(b.text) ? b.text : null;
       if (url && linked.every((s) => (s.link?.url || url) === url)) {
+        const mm = url.match(MAP_LINK);
+        if (mm) {
+          const q = new URLSearchParams(mm[1] || '');
+          q.delete('embed');
+          out.push({ type: 'embed', provider: 'map', id: q.toString(), url, title: b.text === url ? 'Map' : b.text });
+          continue;
+        }
         const v = VIDEO.map((x) => ({ ...x, m: url.match(x.re) })).find((x) => x.m);
         if (v) { out.push({ type: 'embed', provider: v.provider, id: v.m[1], url, title: b.text === url ? 'Video' : b.text }); continue; }
       }
@@ -519,6 +529,11 @@ export function renderBlocks(blocks, env) {
       case 'epigraph':
         return `<figure class="epigraph"><blockquote><p>${renderInline(b.quote, resolve)}</p></blockquote><figcaption>${renderInline(b.cite, resolve)}</figcaption></figure>`;
       case 'embed': {
+        if (b.provider === 'map') {
+          const q = b.id ? '&' + b.id : '';
+          const full = '/map/' + (b.id ? '?' + b.id : '');
+          return `<figure class="embed embed-map"><div class="embed-frame embed-frame--map"><iframe src="/map/?embed=1${esc(q)}" title="${esc(b.title === 'Map' ? 'Map of Aotearoa in 1810' : b.title)}" loading="lazy" allow="clipboard-write; fullscreen" allowfullscreen></iframe></div><figcaption>${b.title === 'Map' ? '' : esc(b.title) + '. '}<a href="${esc(full)}">Open the full map</a>. Shared for academic review, not for wider publication.</figcaption></figure>`;
+        }
         const src = b.provider === 'youtube'
           ? `https://www.youtube-nocookie.com/embed/${b.id}`
           : `https://player.vimeo.com/video/${b.id}?dnt=1`;

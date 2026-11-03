@@ -9,6 +9,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ 'src/assets': 'assets' });
   eleventyConfig.addPassthroughCopy({ 'src/media': 'media' });
   eleventyConfig.addPassthroughCopy({ 'src/static': '/' });
+  // The Taua map: tiles and data built by map/build.mjs (see map/README.md).
+  eleventyConfig.addPassthroughCopy({ 'map-build': 'map' });
   eleventyConfig.addWatchTarget('src/assets/');
 
   // ── collections ─────────────────────────────────────────────

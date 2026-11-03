@@ -4,3 +4,4 @@ test/fixtures/
 .DS_Store
 *.log
 .env
+map-build/

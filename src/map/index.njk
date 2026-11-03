@@ -1,0 +1,127 @@
+---
+permalink: /map/index.html
+eleventyExcludeFromCollections: true
+title: Aotearoa in 1810
+description: Taua's map of Aotearoa in 1810. Places, hapū territories, plant cover, landmarks and tracks, shared for academic review.
+---
+{%- set v = build.time | dateFull -%}
+<!doctype html>
+<html lang="{{ site.language }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ title }} | Taua map | {{ site.title }}</title>
+  <meta name="description" content="{{ description }}">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/bn-romaine.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/site.css?v={{ v }}">
+  <link rel="stylesheet" href="vendor/leaflet.css">
+  <link rel="stylesheet" href="map.css?v={{ v }}">
+  <script>if (new URLSearchParams(location.search).get('embed') === '1') document.documentElement.classList.add('is-embed');</script>
+  {%- if site.cloudflareAnalyticsToken and not build.preview %}
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ site.cloudflareAnalyticsToken }}"}'></script>
+  {%- endif %}
+</head>
+<body class="tm">
+  <header class="tm-top">
+    <a class="tm-brand" href="/">{{ site.title }}<span>{{ site.blogName }}</span></a>
+    <div class="tm-title">
+      <h1>{{ title }}</h1>
+      <p>Taua map · 1810 snapshot</p>
+    </div>
+    <div class="tm-search" role="search">
+      <label class="tm-visually-hidden" for="tm-search">Search places, hapū, iwi and landmarks</label>
+      <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m13 13 4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <input id="tm-search" type="search" placeholder="Search places, hapū, iwi" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="tm-results" aria-autocomplete="list">
+      <ul id="tm-results" role="listbox" hidden></ul>
+    </div>
+    <button type="button" class="tm-icon tm-search-open" id="tm-search-open" aria-label="Search"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m13 13 4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    <button type="button" class="tm-link tm-about-link" data-about>About this map</button>
+  </header>
+
+  <div class="tm-notice" id="tm-notice" role="note">
+    <p><b>For academic review.</b> Not for wider publication.<span class="tm-long"> This is working research: holders, places and borders are still being checked, and some are marked unconfirmed or approximate.</span> <button type="button" class="tm-link" data-about>How to read it</button></p>
+    <button type="button" class="tm-icon tm-notice-close" id="tm-notice-close" aria-label="Make this notice smaller"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  </div>
+
+  <main class="tm-stage">
+    <div id="map" class="tm-map" aria-label="Map of Aotearoa in 1810"></div>
+    <div class="tm-hover" id="tm-hover" hidden></div>
+    <p class="tm-wheel-hint" id="tm-wheel-hint" hidden>Click the map to zoom with the scroll wheel</p>
+
+    <aside class="tm-layers" id="tm-layers" aria-label="Layers and legend">
+      <button type="button" class="tm-layers-toggle" id="tm-layers-toggle" aria-expanded="false" aria-controls="tm-layers-body">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 3 7 4-7 4-7-4 7-4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m3 10.5 7 4 7-4M3 14 10 18l7-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <span>Layers</span>
+      </button>
+      <div class="tm-layers-body" id="tm-layers-body">
+        <fieldset>
+          <legend class="tm-visually-hidden">Layers</legend>
+          <label class="tm-check"><input type="checkbox" data-layer="places">Places<span class="tm-hint">pā, kāinga, anchorages</span></label>
+          <div class="tm-sub" id="tm-types"></div>
+          <label class="tm-check"><input type="checkbox" data-layer="territory">Hapū territories</label>
+          <div class="tm-sub"><label class="tm-select">Colour by
+            <select id="tm-colour"><option value="conf">Confederation</option><option value="iwi">Iwi</option><option value="hapu">Hapū</option></select></label></div>
+          <label class="tm-check"><input type="checkbox" data-layer="whenua">Whenua<span class="tm-hint">plant cover c.1810</span></label>
+          <div class="tm-sub"><label class="tm-range">Opacity <input type="range" id="tm-whenua-op" min="10" max="100" step="5"></label></div>
+          <label class="tm-check"><input type="checkbox" data-layer="landmarks">Landmarks</label>
+          <label class="tm-check"><input type="checkbox" data-layer="tracks">Tracks and waterways</label>
+          <div class="tm-sub" id="tm-track-types"></div>
+        </fieldset>
+        <div class="tm-legend" id="tm-legend"></div>
+      </div>
+    </aside>
+
+    <div class="tm-controls" role="group" aria-label="Map controls">
+      <button type="button" class="tm-icon" id="tm-zoom-in" aria-label="Zoom in"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+      <button type="button" class="tm-icon" id="tm-zoom-out" aria-label="Zoom out"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+      <button type="button" class="tm-icon" id="tm-home" aria-label="Show the whole country" title="Show the whole country"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 9.5 10 4l6.5 5.5M5.5 8v8h9V8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button type="button" class="tm-icon" id="tm-share" aria-label="Copy a link to this view" title="Copy a link to this view"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8.5 11.5a3.5 3.5 0 0 0 5 0l2.5-2.5a3.5 3.5 0 0 0-5-5l-1 1M11.5 8.5a3.5 3.5 0 0 0-5 0L4 11a3.5 3.5 0 0 0 5 5l1-1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    </div>
+    <p class="tm-embed-note">For academic review · <button type="button" class="tm-link" data-about>About</button></p>
+    <a class="tm-open-full" id="tm-open-full" href="./" target="_blank" rel="noopener">Open the full map<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8 4H4v12h12v-4M11 3h6v6M17 3l-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+
+    <aside class="tm-panel" id="tm-panel" hidden aria-live="polite" aria-label="Details">
+      <button type="button" class="tm-panel-handle" id="tm-panel-handle" aria-label="Expand or collapse details"><span></span></button>
+      <button type="button" class="tm-icon tm-panel-close" id="tm-panel-close" aria-label="Close details"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+      <div class="tm-panel-body" id="tm-panel-body"></div>
+    </aside>
+  </main>
+
+  <div class="tm-about" id="tm-about" hidden role="dialog" aria-modal="true" aria-labelledby="tm-about-title">
+    <div class="tm-about-card">
+      <button type="button" class="tm-icon tm-about-close" id="tm-about-close" aria-label="Close"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+      <p class="tm-kind">About this map</p>
+      <h2 id="tm-about-title">How to read it</h2>
+      <p>This is the map behind Taua, a grand-strategy game I'm building about Aotearoa in 1810. It shows the world the game opens on: who held each place, roughly where hapū territories ran, what covered the land, and the landmarks and tracks that shaped movement.</p>
+      <p><b>It is shared for academic review, not for wider publication.</b> Please don't reproduce it. It is working research, built from published sources: Waitangi Tribunal reports, the Dictionary of New Zealand Biography, Te Ara, Crosby's <i>The Musket Wars</i>, Kelly's <i>Tainui</i>, Taylor's <i>Lore and History of the South Island Maori</i>, Native Land Court minutes, the LINZ gazetteer and others, cited place by place.</p>
+      <h3>What the marks mean</h3>
+      <ul>
+        <li><b>Unconfirmed</b> (dashed amber edge): the 1810 holder is a reasoned inference, often from neighbouring places, and still needs a source.</li>
+        <li><b>Approximate location</b> (faded): the source names the place but not exactly where it sat.</li>
+        <li><b>Placeholder site</b>: a place the game needs whose identity is still being researched.</li>
+        <li><b>Consult</b> (red edge on a landmark): a site of particular significance. It won't be modelled without the agreement of the hapū who hold its kōrero.</li>
+      </ul>
+      <h3>Limits</h3>
+      <ul>
+        <li>The map is drawn in the game's own space, which is warped from true geography. Don't measure distances or take positions from it.</li>
+        <li>Territories are modelled. Each block of land follows the 1810 holder of its nearest place. They are not boundary claims.</li>
+        <li>Populations are model estimates, and the plant cover is reconstructed from potential vegetation and early maps.</li>
+        <li>Wrong is worse than blank, so where the sources say nothing, the map leaves a gap.</li>
+      </ul>
+      <p>If you hold kōrero about a place, or see something wrong, I'd be grateful to hear from you: <a href="mailto:brewer.lewis@gmail.com?subject=Taua%20map">brewer.lewis@gmail.com</a>.</p>
+      <p class="tm-fine">Data exported <span id="tm-stamp"></span>. <span id="tm-counts"></span>. Base map built from LINZ Topo50 data (CC BY 4.0) and Manaaki Whenua Landcare Research potential vegetation.</p>
+    </div>
+  </div>
+
+  <noscript><p class="tm-noscript">The map needs JavaScript.</p></noscript>
+  <script src="vendor/leaflet.js"></script>
+  <script src="data.js?v={{ v }}"></script>
+  <script src="viewer.js?v={{ v }}"></script>
+</body>
+</html>

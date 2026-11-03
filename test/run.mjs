@@ -76,6 +76,7 @@ async function main() {
   ok(whenua.includes('href="/concept/"'), 'Whenua: link to another tab points at its post');
   ok(whenua.includes('href="#what-it-looked-like-1810"'), 'Whenua: link to a heading');
   ok(whenua.includes('youtube-nocookie.com/embed/dQw4w9WgXcQ'), 'Whenua: YouTube link becomes a player');
+  ok(whenua.includes('src="/map/?embed=1&amp;p=P0011&amp;l=tsm"') && whenua.includes('href="/map/?p=P0011&amp;l=tsm"'), 'Whenua: map link becomes an embedded map');
   ok(whenua.includes('class="footnotes"') && whenua.includes('timing shifts from north to south'), 'Whenua: footnote');
   ok(/<h2 id="kits-detail">Kits detail<\/h2>[\s\S]*<h3 id="northern-kits">Northern kits<\/h3>/.test(whenua), 'Whenua: child tab folded in as a section');
   ok(whenua.includes('<time datetime="2026-10-30">30 October 2026</time>'), 'Whenua: date in te reo month read correctly');

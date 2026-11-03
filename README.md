@@ -44,6 +44,12 @@ cards, in the label above the title and in the breadcrumbs. Blank Series
 still means Taua dev log only, so to keep a post in the dev log as well as
 another series, name both.
 
+## The map
+
+`/map/` is a read-only map of Aotearoa in 1810 built from the Taua tables.
+Double-click `update_map.bat` to refresh it. A map link pasted into a Doc as
+its own paragraph becomes an embedded map. See `map/README.md`.
+
 ## Layout
 
 ```
@@ -59,6 +65,7 @@ src/                  Eleventy site
   assets/             CSS, fonts, default share image
   posts/  media/      written by the converter, don't edit by hand
   widget/latest.njk   the "latest posts" iframe for Readymag
+map/  map-src/       the Taua map: export, build and viewer (map/README.md)
 data/state.json       what's published, first-publish dates, slugs
 scripts/relativize.mjs  makes preview downloads open from a folder
 test/                 offline end-to-end test with fixture Docs

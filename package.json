@@ -9,14 +9,16 @@
   },
   "scripts": {
     "sync": "node converter/sync.mjs",
-    "build": "eleventy",
-    "start": "eleventy --serve",
-    "test": "node test/run.mjs"
+    "build": "node map/build.mjs && eleventy",
+    "start": "node map/build.mjs && eleventy --serve",
+    "test": "node test/run.mjs",
+    "map": "node map/build.mjs"
   },
   "dependencies": {
     "@11ty/eleventy": "3.1.7",
     "@11ty/eleventy-plugin-rss": "3.1.0",
     "google-auth-library": "11.3.2",
+    "leaflet": "1.9.4",
     "sharp": "0.35.5"
   }
 }

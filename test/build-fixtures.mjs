@@ -176,6 +176,7 @@ function whenuaContent(meta) {
     NUM('Forest kits.', 1),
     NUM('The art pass.'),
     P('https://www.youtube.com/watch?v=dQw4w9WgXcQ'),
+    P('https://blog.lewisbrewer.com/map/?p=P0011&l=tsm'),
     P('Back to [the 1810 section](#heading:h.looked:t.whenua).'),
   ];
 }

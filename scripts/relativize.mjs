@@ -21,7 +21,8 @@ function rel(fromFile, url) {
   let target = clean.endsWith('/') ? clean + 'index.html' : clean;
   let r = path.relative(path.dirname(fromFile), path.join(root, target)).split(path.sep).join('/');
   if (!r) r = 'index.html';
-  return r + (query && !target.endsWith('.html') ? `?${query}` : '') + (hash ? `#${hash}` : '');
+  // keep the query for the map, whose view and embed mode live in it
+  return r + (query && (!target.endsWith('.html') || target.startsWith('/map/')) ? `?${query}` : '') + (hash ? `#${hash}` : '');
 }
 
 for await (const f of files(root)) {
