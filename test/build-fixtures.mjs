@@ -216,11 +216,11 @@ async function main() {
   const manaDoc = {
     documentId: 'doc-mana',
     title: 'Mana and utu',
-    tabs: [tab('t.0', 'Tab 1', [details({ Title: 'Mana and utu', Date: '2026-11-02', Tags: 'mana, utu', Summary: 'A first pass on mana and utu.' }), P('Short test post that run 2 takes down.')])],
+    tabs: [tab('t.0', 'Tab 1', [details({ Title: 'Mana and utu', Date: '2026-11-02', Tags: 'mana, utu', Series: 'Map', Summary: 'A first pass on mana and utu.' }), P('Short test post that run 2 takes down.')])],
   };
 
   const conceptMeta = { Title: '', Date: '', Summary: '', Tags: 'Design, Pillars, tikanga', Series: '', Cover: '', Status: '' };
-  const whenuaMeta = { Title: 'Whenua', Date: '30 Whiringa-ā-nuku 2026', Tags: 'whenua, art, map', Cover: '2', Status: 'Publish' };
+  const whenuaMeta = { Title: 'Whenua', Date: '30 Whiringa-ā-nuku 2026', Tags: 'whenua, art, map', Series: 'Taua dev log; Map', Cover: '2', Status: 'Publish' };
 
   // Run 1: both Docs in the folder.
   const r1 = path.join(OUT, 'run1');

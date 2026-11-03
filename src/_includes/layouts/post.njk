@@ -1,7 +1,8 @@
 ---
 layout: layouts/base.njk
 ---
-{%- set nav = collections.seriesList | seriesNav(seriesSlug, page.url) -%}
+{%- set navs = collections.seriesList | seriesNavs({ series: series, seriesSlug: seriesSlug, seriesAll: seriesAll }, page.url) -%}
+{%- set nav = navs[0] -%}
 <article class="post" id="top">
   {%- if draft %}
   <p class="draft-banner">Draft. Only visible in preview builds.</p>
@@ -29,15 +30,17 @@ layout: layouts/base.njk
 {{ content | safe }}
   </div>
 
-  {%- if nav and nav.total > 1 %}
-  <nav class="series-nav" aria-label="{{ nav.name }}">
-    <p class="series-nav-label"><a href="/series/{{ nav.slug }}/">{{ nav.name }}</a>, part {{ nav.position }} of {{ nav.total }}</p>
+  {#- One block per series the post is in (main series first), skipping a
+      series that has only this post. -#}
+  {%- for n in navs %}{% if n.total > 1 %}
+  <nav class="series-nav" aria-label="{{ n.name }}">
+    <p class="series-nav-label"><a href="/series/{{ n.slug }}/">{{ n.name }}</a>, part {{ n.position }} of {{ n.total }}</p>
     <div class="series-nav-links">
-      {%- if nav.prev %}<a class="prev" href="{{ nav.prev.url }}"><span>Previous</span>{{ nav.prev.data.title }}</a>{% else %}<span></span>{% endif %}
-      {%- if nav.next %}<a class="next" href="{{ nav.next.url }}"><span>Next</span>{{ nav.next.data.title }}</a>{% endif %}
+      {%- if n.prev %}<a class="prev" href="{{ n.prev.url }}"><span>Previous</span>{{ n.prev.data.title }}</a>{% else %}<span></span>{% endif %}
+      {%- if n.next %}<a class="next" href="{{ n.next.url }}"><span>Next</span>{{ n.next.data.title }}</a>{% endif %}
     </div>
   </nav>
-  {%- endif %}
+  {%- endif %}{% endfor %}
 
   {%- if site.giscus.repo and site.giscus.repoId and site.giscus.categoryId and not build.preview and not draft %}
   <section class="comments" id="comments" aria-label="Comments">

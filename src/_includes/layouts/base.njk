@@ -38,7 +38,7 @@
   {%- for t in topics %}
   <meta property="article:tag" content="{{ t }}">
   {%- endfor %}
-  <script type="application/ld+json">{{ { page: page, title: title, summary: summary, date: date, dateModified: dateModified, topics: topics, cover: cover, series: series, seriesSlug: seriesSlug, wordCount: wordCount } | postSchema | safe }}</script>
+  <script type="application/ld+json">{{ { page: page, title: title, summary: summary, date: date, dateModified: dateModified, topics: topics, cover: cover, series: series, seriesSlug: seriesSlug, seriesAll: seriesAll, wordCount: wordCount } | postSchema | safe }}</script>
   {%- elif page.url == "/" %}
   <script type="application/ld+json">{{ "" | siteSchema | safe }}</script>
   {%- endif %}

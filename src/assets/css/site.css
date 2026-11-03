@@ -266,6 +266,7 @@ a { color: inherit; }
 
 /* Series navigation and comments. */
 .series-nav, .comments { max-width: calc(var(--measure) + 2 * var(--gutter)); margin: clamp(56px, 8vw, 96px) auto 0; padding: 0 var(--gutter); }
+.series-nav + .series-nav { margin-top: clamp(32px, 5vw, 48px); }
 .series-nav-label { margin: 0 0 1rem; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .series-nav-label a { color: var(--red-text); text-decoration: none; }
 .series-nav-links { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; border-top: 1px solid var(--rule); padding-top: 1.25rem; }

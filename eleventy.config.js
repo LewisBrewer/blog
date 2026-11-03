@@ -14,12 +14,18 @@ export default function (eleventyConfig) {
   // ── collections ─────────────────────────────────────────────
   eleventyConfig.addCollection('posts', (api) => api.getFilteredByTag('post').sort(byDateDesc));
 
-  const group = (api, field, slugField) => {
+  // Every series a post belongs to, main one first: [{ name, slug }].
+  // Reads seriesAll (several series) or falls back to series/seriesSlug (one).
+  const seriesOf = (d) =>
+    Array.isArray(d?.seriesAll) && d.seriesAll.length
+      ? d.seriesAll
+      : d?.series ? [{ name: d.series, slug: d.seriesSlug || slugify(d.series) }] : [];
+
+  const group = (api, field) => {
     const map = new Map();
     for (const post of api.getFilteredByTag('post').sort(byDateDesc)) {
-      const values = field === 'topics' ? post.data.topics || [] : post.data.series ? [post.data.series] : [];
-      for (const name of values) {
-        const slug = slugField ? post.data[slugField] : slugify(name);
+      const values = field === 'topics' ? (post.data.topics || []).map((name) => ({ name, slug: slugify(name) })) : seriesOf(post.data);
+      for (const { name, slug } of values) {
         if (!map.has(slug)) map.set(slug, { name, slug, posts: [] });
         map.get(slug).posts.push(post);
       }
@@ -28,7 +34,7 @@ export default function (eleventyConfig) {
   };
   eleventyConfig.addCollection('topicList', (api) => group(api, 'topics'));
   eleventyConfig.addCollection('seriesList', (api) =>
-    group(api, 'series', 'seriesSlug').map((s) => ({ ...s, posts: [...s.posts].reverse() })) // oldest first
+    group(api, 'series').map((s) => ({ ...s, posts: [...s.posts].reverse() })) // oldest first
   );
 
   // ── filters ─────────────────────────────────────────────────
@@ -44,18 +50,27 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter('limit', (arr, n) => (arr || []).slice(0, n));
   eleventyConfig.addFilter('year', () => new Date().getFullYear());
 
-  // Where a post sits in its series: { position, total, prev, next }
-  eleventyConfig.addFilter('seriesNav', (seriesList, slug, url) => {
+  // Where a post sits in one series: { name, slug, position, total, prev, next }
+  const navIn = (seriesList, slug, url) => {
     const s = (seriesList || []).find((x) => x.slug === slug);
     if (!s) return null;
     const i = s.posts.findIndex((p) => p.url === url);
     if (i < 0) return null;
     return { name: s.name, slug: s.slug, position: i + 1, total: s.posts.length, prev: s.posts[i - 1] || null, next: s.posts[i + 1] || null };
-  });
+  };
+  eleventyConfig.addFilter('seriesNav', navIn);
+  // The same for every series the post is in, main series first.
+  eleventyConfig.addFilter('seriesNavs', (seriesList, data, url) =>
+    seriesOf(data).map((x) => navIn(seriesList, x.slug, url)).filter(Boolean)
+  );
+  eleventyConfig.addFilter('seriesOf', seriesOf);
+  eleventyConfig.addFilter('seriesSlugs', (data) => seriesOf(data).map((x) => x.slug).join(' '));
 
   // Structured data for a post (schema.org BlogPosting), safe to inline.
   eleventyConfig.addFilter('postSchema', (d) => {
     const url = site.url + d.page.url;
+    const all = seriesOf(d).map((x) => ({ '@type': 'CreativeWorkSeries', name: x.name, url: `${site.url}/series/${x.slug}/` }));
+    const main = all[0];
     const data = {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
@@ -71,17 +86,15 @@ export default function (eleventyConfig) {
       image: d.cover ? [site.url + d.cover.og, site.url + d.cover.src] : [site.url + '/assets/og-default.jpg'],
       author: { '@type': 'Person', name: site.author.name, url: site.author.url, jobTitle: site.author.jobTitle, sameAs: site.author.sameAs },
       publisher: { '@type': 'Person', name: site.author.name, url: site.author.url },
-      isPartOf: d.series
-        ? { '@type': 'CreativeWorkSeries', name: d.series, url: `${site.url}/series/${d.seriesSlug}/` }
-        : { '@type': 'Blog', name: `${site.title} ${site.blogName}`, url: site.url + '/' },
+      isPartOf: all.length > 1 ? all : main || { '@type': 'Blog', name: `${site.title} ${site.blogName}`, url: site.url + '/' },
     };
     const crumbs = {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: site.blogName, item: site.url + '/' },
-        ...(d.series ? [{ '@type': 'ListItem', position: 2, name: d.series, item: `${site.url}/series/${d.seriesSlug}/` }] : []),
-        { '@type': 'ListItem', position: d.series ? 3 : 2, name: d.title, item: url },
+        ...(main ? [{ '@type': 'ListItem', position: 2, name: main.name, item: main.url }] : []),
+        { '@type': 'ListItem', position: main ? 3 : 2, name: d.title, item: url },
       ],
     };
     return JSON.stringify([data, crumbs]).replace(/</g, '\\u003c');

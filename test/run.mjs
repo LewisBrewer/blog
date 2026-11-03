@@ -92,6 +92,19 @@ async function main() {
   ok((widget.match(/class="item"/g) || []).length === 3, 'Widget: lists the posts');
   ok(await exists(site, 'series/taua-dev-log/index.html') && await exists(site, 'tags/whenua/index.html'), 'Series and tag pages');
 
+  // A post in two series (Whenua: "Taua dev log; Map").
+  const mapSeries = await read(site, 'series/map/index.html');
+  const devlog = await read(site, 'series/taua-dev-log/index.html');
+  ok(mapSeries.includes('href="/whenua/"') && mapSeries.includes('href="/mana-and-utu/"') && mapSeries.indexOf('/whenua/') < mapSeries.indexOf('/mana-and-utu/'), 'Multi-series: Map lists both posts, oldest first');
+  ok(devlog.includes('href="/whenua/"') && devlog.includes('href="/concept/"') && !devlog.includes('href="/mana-and-utu/"'), 'Multi-series: dev log lists only its own posts');
+  ok((whenua.match(/class="series-nav"/g) || []).length === 2 && whenua.includes('>Taua dev log</a>, part') && whenua.includes('>Map</a>, part 1 of 2'), 'Multi-series: a nav block for each series');
+  ok(/class="series-label" href="\/series\/taua-dev-log\/"/.test(whenua), 'Multi-series: first series is the main one');
+  const wld = JSON.parse(whenua.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+  ok(Array.isArray(wld[0].isPartOf) && wld[0].isPartOf.length === 2 && wld[1].itemListElement[1].name === 'Taua dev log', 'Multi-series: structured data lists both series');
+  ok(/data-series=" taua-dev-log map "/.test(widget), 'Multi-series: widget can filter by either series');
+  ok(/class="series-label" href="\/series\/map\/"/.test(await read(site, 'mana-and-utu/index.html')), 'Single named series still works');
+  ok(!(await read(tmp, 'src/posts/concept/index.html')).includes('seriesAll'), 'One-series posts keep the same front matter');
+
   const conceptDate = Object.values(JSON.parse(await read(tmp, 'data/state.json')).posts).find((p) => p.slug === 'concept').date;
   console.log('\nRun 2: one Doc removed, a slug changed, a title edited');
   console.log(run(tmp, ['converter/sync.mjs', '--fixture', 'test/fixtures/run2']));

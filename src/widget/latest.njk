@@ -35,7 +35,7 @@ eleventyExcludeFromCollections: true
 <body>
   <ul class="grid" id="posts">
     {%- for post in collections.posts | limit(12) %}{% if not post.data.draft %}
-    <li class="item" data-series="{{ post.data.seriesSlug or '' }}">
+    <li class="item" data-series=" {{ post.data | seriesSlugs }} ">
       <a href="{{ post.url | absolute }}">
         <div class="media">{% if post.data.cover %}<img src="{{ post.data.cover.thumb | absolute }}" alt="" width="640" height="400" loading="lazy" decoding="async">{% endif %}</div>
         <p class="date"><time datetime="{{ post.date | dateIso }}">{{ post.date | dateLong }}</time></p>
@@ -55,7 +55,7 @@ eleventyExcludeFromCollections: true
       var items = [].slice.call(document.querySelectorAll('.item'));
       var shown = 0;
       items.forEach(function (li) {
-        var ok = (!series || li.getAttribute('data-series') === series) && shown < n;
+        var ok = (!series || li.getAttribute('data-series').indexOf(' ' + series + ' ') > -1) && shown < n;
         if (ok) shown++; else li.remove();
       });
       if (!shown) { document.getElementById('empty').hidden = false; }

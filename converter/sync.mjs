@@ -142,8 +142,11 @@ async function main() {
       if (f.date && !date) report.warnings.push(`"${title}": couldn't read the date "${f.date}". Write it like 30 October 2026.`);
       date ||= prev?.date || today;
 
-      const seriesRaw = (f.series || '').trim();
-      const series = /^(none|no|-)$/i.test(seriesRaw) ? null : seriesRaw || site.defaultSeries || null;
+      // Series: one name, or several split by commas or semicolons. The first is the
+      // post's main series (shown on cards and in breadcrumbs). Blank means the
+      // default series; "none" means no series.
+      const seriesRaw = nfc(f.series || '').trim();
+      const series = /^(none|no|-)$/i.test(seriesRaw) ? [] : parseTags(seriesRaw || site.defaultSeries || '');
       const cover = parseCover(f.cover);
       if (cover.warning) report.warnings.push(`"${title}": ${cover.warning}`);
       for (const u of p.unknownFields) report.warnings.push(`"${title}": the details row "${u}" isn't a field the blog knows, so it was ignored.`);
@@ -240,8 +243,11 @@ async function main() {
       summary: nfc(it.summaryField || p.state.subtitleText || truncate(firstParagraph(p), 160)),
       date: it.date,
       topics: it.tags,
-      series: it.series,
-      seriesSlug: it.series ? slugify(it.series) : null,
+      series: it.series[0] || null,
+      seriesSlug: it.series[0] ? slugify(it.series[0]) : null,
+      // Only written when a post is in more than one series, so posts in one
+      // series keep the same front matter (and the same "updated" date).
+      seriesAll: it.series.length > 1 ? it.series.map((name) => ({ name, slug: slugify(name) })) : undefined,
       slug,
       permalink: url,
       cover,

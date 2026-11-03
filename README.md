@@ -27,7 +27,7 @@ couldn't read) opens a GitHub issue, which GitHub emails to you.
 | Date    | The day it first goes live, then fixed |
 | Summary | The first paragraph, trimmed |
 | Tags    | None. Separate with commas |
-| Series  | Taua dev log (write `none` for no series) |
+| Series  | Taua dev log. Separate several with commas or semicolons; the first is the main one. `none` for no series |
 | Cover   | The first image. A number picks another, `none` for no cover |
 | Status  | Publish. `Draft` holds it back or takes it down |
 | Slug    | The title without macrons. Fixed after the first publish |
@@ -36,6 +36,13 @@ Under an image, an italic paragraph is its caption. Press Shift+Enter inside
 the caption and put the credit on the second line (or start it with
 `Credit:`). A quote followed by a single bullet becomes an epigraph. A
 paragraph that's only a YouTube or Vimeo link becomes a player.
+
+A post can sit in more than one series, for example `Map; Taua dev log`.
+It appears on each series page in date order, and its page shows a
+previous/next block for each series. The first series names the post on
+cards, in the label above the title and in the breadcrumbs. Blank Series
+still means Taua dev log only, so to keep a post in the dev log as well as
+another series, name both.
 
 ## Layout
 
