@@ -5,6 +5,7 @@ rem   Double-click            export from Core Data, then publish (live in a few
 rem   update_map.bat preview  export and push to the map-preview branch only (nothing goes live)
 rem
 rem Needs Python 3 and Git for Windows. Reads Core Data, never writes to it.
+rem Site code comes from GitHub: local edits to the blog's code in this folder are replaced.
 setlocal EnableExtensions
 rem Git rewrites this file while it runs (pulling the latest version), and cmd
 rem reads a batch file as it goes, so run from a copy in the temp folder.
@@ -53,72 +54,74 @@ echo   1/3  Exporting the public map data
 %PY% map\export_public.py "%CORE%"
 if errorlevel 1 goto fail
 
-set "PATHS=map-src map src/map update_map.bat README.md .gitignore eleventy.config.js package.json package-lock.json .github/workflows/publish.yml converter/docs-to-html.mjs scripts/relativize.mjs src/_includes/layouts/base.njk src/assets/css/site.css test/run.mjs test/build-fixtures.mjs"
+rem The map data is rebuilt from Core Data on every run, and the site code lives on
+rem GitHub, so this never merges: it sets the export aside, takes GitHub's latest
+rem version of everything, puts the export back on top and sends that.
+set "HOLD=%TEMP%\taua_map_src"
+if exist "%HOLD%" rmdir /s /q "%HOLD%"
+robocopy map-src "%HOLD%" /MIR /NFL /NDL /NJH /NJS /NP >nul
+if errorlevel 8 goto fail
+
+echo.
+echo   2/3  Getting the latest version from GitHub
+git rebase --abort >nul 2>nul
+git merge --abort >nul 2>nul
+git fetch -q origin
+if errorlevel 1 goto fail
+git checkout -q -f main
+git reset -q --hard origin/main
+if errorlevel 1 goto fail
+robocopy "%HOLD%" map-src /MIR /NFL /NDL /NJH /NJS /NP >nul
+if errorlevel 8 goto fail
 
 if "%MODE%"=="preview" goto preview
 
-echo.
-echo   2/3  Saving the change
-git add -A -- %PATHS%
+git add -A -- map-src
 git diff --cached --quiet
 if not errorlevel 1 (
-  echo        Nothing changed since the last update.
-  goto pushonly
+  echo.
+  echo   Nothing has changed since the last update. Nothing to send.
+  goto end
 )
 git commit -q -m "Update the map"
 if errorlevel 1 goto fail
 
-:pushonly
 echo.
 echo   3/3  Sending it to GitHub
-rem map-src is regenerated from Core Data on every run, so on a clash this PC's copy wins
-git pull --rebase -q -X theirs
+git push -q origin main
 if errorlevel 1 (
-  echo   Couldn't merge with the latest posts on GitHub. Nothing was published.
-  git rebase --abort >nul 2>nul
-  goto fail
+  rem GitHub moved on in the last few seconds (usually the daily posts run): try once more
+  git fetch -q origin
+  git reset -q --soft origin/main
+  git commit -q -m "Update the map"
+  git push -q origin main
+  if errorlevel 1 goto fail
 )
-git push -q
-if errorlevel 1 goto fail
 git push -q origin --delete map-preview >nul 2>nul
 echo.
-echo   Done. The map goes live at https://blog.lewisbrewer.com/map/ in a few minutes
-echo   (longer the first time, while GitHub builds the tiles).
+echo   Done. The map goes live at https://blog.lewisbrewer.com/map/ in a few minutes.
 echo   Progress: https://github.com/LewisBrewer/blog/actions
 goto end
 
 :preview
 echo.
-echo   2/3  Saving a preview
-git stash push -q --include-untracked -- %PATHS% >nul 2>nul
-git fetch -q origin
-git checkout -q -B map-preview origin/main
-if errorlevel 1 goto restore
-git stash pop -q
-if errorlevel 1 (
-  echo   The preview clashed with the latest version on GitHub.
-  goto restore
-)
-git add -A -- %PATHS%
+echo   3/3  Sending a preview to GitHub
+git checkout -q -B map-preview
+git add -A -- map-src
 git commit -q -m "Map preview"
-echo.
-echo   3/3  Sending the preview to GitHub
 git push -q -f origin map-preview
 if errorlevel 1 goto restore
-git checkout -q main
-git checkout -q map-preview -- %PATHS%
-git reset -q
+git checkout -q -f main
+robocopy "%HOLD%" map-src /MIR /NFL /NDL /NJH /NJS /NP >nul
 echo.
 echo   Done. Nothing has gone live. To look at it:
 echo     1. Open https://github.com/LewisBrewer/blog/actions/workflows/publish.yml
 echo     2. Run workflow, set "Use workflow from" to map-preview, tick Preview only, Run.
-echo     3. When it finishes (about 10 minutes the first time), download blog-preview,
-echo        unzip it and open map\index.html.
+echo     3. When it finishes, download blog-preview, unzip it and open map\index.html.
 goto end
 
 :restore
-git checkout -q main >nul 2>nul
-git stash pop -q >nul 2>nul
+git checkout -q -f main >nul 2>nul
 goto fail
 
 :fail
