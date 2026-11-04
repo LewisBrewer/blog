@@ -6,11 +6,17 @@ rem   update_map.bat preview  export and push to the map-preview branch only (no
 rem
 rem Needs Python 3 and Git for Windows. Reads Core Data, never writes to it.
 setlocal EnableExtensions
-cd /d "%~dp0"
+rem Git rewrites this file while it runs (pulling the latest version), and cmd
+rem reads a batch file as it goes, so run from a copy in the temp folder.
+if /i not "%~1"=="--run" (
+  copy /y "%~f0" "%TEMP%\update_taua_map.bat" >nul
+  "%TEMP%\update_taua_map.bat" --run "%~dp0" %1
+)
+cd /d "%~2"
 title Update the Taua map
 set "CORE=D:\Taua\Taua\Assets\Core Data"
 set "MODE=publish"
-if /i "%~1"=="preview" set "MODE=preview"
+if /i "%~3"=="preview" set "MODE=preview"
 set "PYTHONUTF8=1"
 
 echo.
