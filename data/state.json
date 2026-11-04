@@ -215,7 +215,7 @@
       "title": "Pā, kāinga and the human map: the data",
       "date": "2026-10-31",
       "dateModified": "2026-11-04",
-      "contentHash": "86d97a65bd2c",
+      "contentHash": "2ac1a3279157",
       "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
       "docName": "Taua_Blog_drafts",
       "tabIds": [
@@ -228,8 +228,8 @@
       "slug": "pa-kainga-and-the-human-map-in-play",
       "title": "Pā, kāinga and the human map: in play",
       "date": "2026-11-01",
-      "dateModified": "2026-11-01",
-      "contentHash": "7ba425da8f3f",
+      "dateModified": "2026-11-04",
+      "contentHash": "d116b3af7fae",
       "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
       "docName": "Taua_Blog_drafts",
       "tabIds": [
@@ -242,12 +242,26 @@
       "slug": "pa-kainga-and-the-human-map-the-art",
       "title": "Pā, kāinga and the human map: the art",
       "date": "2026-11-02",
-      "dateModified": "2026-11-02",
-      "contentHash": "cee91ed9b417",
+      "dateModified": "2026-11-04",
+      "contentHash": "0b0d652324da",
       "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
       "docName": "Taua_Blog_drafts",
       "tabIds": [
         "t.vfs9zsus09za"
+      ],
+      "sections": {},
+      "oldSlugs": []
+    },
+    "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo:t.ank3ryjzq9yz": {
+      "slug": "map-of-aotearoa-1810",
+      "title": "A map of Aotearoa in 1810",
+      "date": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "contentHash": "6ee109b35566",
+      "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
+      "docName": "Taua_Blog_drafts",
+      "tabIds": [
+        "t.ank3ryjzq9yz"
       ],
       "sections": {},
       "oldSlugs": []
@@ -256,7 +270,7 @@
   "docs": {
     "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo": {
       "name": "Taua_Blog_drafts",
-      "modifiedTime": "2026-11-04T00:10:05.051Z"
+      "modifiedTime": "2026-11-04T04:07:46.238Z"
     }
   },
   "converterVersion": 1
