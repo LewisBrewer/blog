@@ -88,7 +88,8 @@ if errorlevel 1 goto fail
 
 echo.
 echo   3/3  Sending it to GitHub
-git push -q origin main
+rem map-src is regenerated from Core Data on every run, so on a clash this PC's copy wins
+git pull --rebase -q -X theirs
 if errorlevel 1 (
   rem GitHub moved on in the last few seconds (usually the daily posts run): try once more
   git fetch -q origin
