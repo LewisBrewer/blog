@@ -71,7 +71,8 @@ if errorlevel 1 goto fail
 :pushonly
 echo.
 echo   3/3  Sending it to GitHub
-git pull --rebase -q
+rem map-src is regenerated from Core Data on every run, so on a clash this PC's copy wins
+git pull --rebase -q -X theirs
 if errorlevel 1 (
   echo   Couldn't merge with the latest posts on GitHub. Nothing was published.
   git rebase --abort >nul 2>nul

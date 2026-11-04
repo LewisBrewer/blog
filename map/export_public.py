@@ -96,7 +96,7 @@ APPROX = {"estimated", "region", "taylor_location_approx", "crosby_location_appr
           "approx_from_map", "gazetteer_ambiguous", "gazetteer_far", "town"}
 
 
-def places_and_territory():
+def places():
     P = read_csv(os.path.join(SV2, "places.csv"))
     O = read_csv(os.path.join(SV2, "place_occupancy.csv"))
     links = read_csv(os.path.join(SV2, "place_links.csv"))
@@ -174,46 +174,37 @@ def places_and_territory():
         }
         out.append({k: v for k, v in rec.items() if v not in ("", None, [], False)})
 
-    # Territories: each parcel follows the 1810 holder of its host place.
-    parcels = read_csv(os.path.join(SV2, "parcels.csv"))
-    with open(os.path.join(SV2, "parcels_grid.json"), encoding="utf-8") as f:
-        grid = json.load(f)
-    pid_row = {pid: i for i, pid in enumerate(grid["ids"])}
-    keys, key_idx = [], {}
+    return out
 
-    def key_for(hapu, iwi, conf):
-        k = (hapu or "", iwi or "", conf or "")
-        if k not in key_idx:
-            key_idx[k] = len(keys)
-            keys.append(k)
-        return key_idx[k] + 1
 
-    conf_of_iwi = {}
-    for o in O:
-        if o["iwi"] and o["confederation"]:
-            conf_of_iwi.setdefault(o["iwi"], o["confederation"])
-    label_of_row = [0] * (len(grid["ids"]) + 1)
-    by_id = {r["parcel_id"]: r for r in parcels}
-    for pid, i in pid_row.items():
-        r = by_id.get(pid)
-        if not r:
-            continue
-        c = ctrl_of.get(r["host_place_id"])
-        if c:
-            label_of_row[i + 1] = key_for(c["hapu"], c["iwi"], c["confederation"])
-        else:
-            label_of_row[i + 1] = key_for(r["hapu"], r["iwi"], conf_of_iwi.get(r["iwi"], ""))
-    rle, src = [], grid["rle"]
-    for j in range(0, len(src), 2):
-        v = label_of_row[src[j]] if src[j] < len(label_of_row) else 0
-        n = src[j + 1]
-        if rle and rle[-2] == v:
-            rle[-1] += n
-        else:
-            rle += [v, n]
-    terr = {"w": grid["w"], "h": grid["h"], "w0": grid["w0"], "n0": grid["n0"], "cell": grid["cell_deg"],
-            "groups": [{"hapu": h, "iwi": i, "conf": c} for h, i, c in keys], "rle": rle}
-    return out, terr
+# ── territories ───────────────────────────────────────────────
+# The map grows territories the way the Place Editor does (computeTerr): every
+# place with an 1810 holder spreads over land by terrain cost, so moving or
+# adding a place moves its territory. That needs the terrain grid, the cost
+# weights and the editor's hand-drawn rough-country areas.
+PLACE_EDITOR = os.path.join(CORE, "PlaceEditor_6_north.html")
+
+
+def territory_inputs():
+    for name in ("terrain_grid.bin.gz", "terrain_grid.json", "terrain_cost_weights.json"):
+        src = os.path.join(SV2, name)
+        if os.path.exists(src):
+            shutil.copyfile(src, os.path.join(OUT, name))
+    for old in ("territory.json",):
+        if os.path.exists(os.path.join(OUT, old)):
+            os.remove(os.path.join(OUT, old))
+    areas = []
+    if os.path.exists(PLACE_EDITOR):
+        with open(PLACE_EDITOR, encoding="utf-8") as f:
+            s = f.read()
+        i = s.find("const BUNDLE = ")
+        if i >= 0:
+            bundle, _ = json.JSONDecoder().raw_decode(s, i + len("const BUNDLE = "))
+            for a in bundle.get("places") or []:
+                if a.get("kind") == "area" and (a.get("f") or {}).get("subtype") == "impassable" and a.get("wpoly"):
+                    areas.append([[round(x, 6), round(y, 6)] for x, y in a["wpoly"]])
+    write_json("rough_areas.json", areas)
+    return len(areas)
 
 
 def tracks():
@@ -325,9 +316,10 @@ def main():
             sys.exit("  Missing: " + p)
     os.makedirs(OUT, exist_ok=True)
 
-    places, terr = places_and_territory()
-    say("places: %d (%d KB)" % (len(places), write_json("places.json", places) // 1024))
-    say("territory groups: %d (%d KB)" % (len(terr["groups"]), write_json("territory.json", terr) // 1024))
+    pl = places()
+    say("places: %d (%d KB)" % (len(pl), write_json("places.json", pl) // 1024))
+    n_imp = territory_inputs()
+    say("territory inputs: terrain grid, cost weights, %d rough-country areas" % n_imp)
     tr = tracks()
     say("tracks: %d (%d KB)" % (len(tr), write_json("tracks.json", tr) // 1024))
     legend, lm, meta, notes = whenua()
@@ -342,8 +334,7 @@ def main():
         "exported": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "year": YEAR, "W0": W0, "N0": N0, "PPD": PPD, "fine": FINE, "grid": GRID_W,
         "tile": 2048, "tiles": 18, "regions": meta.get("regions", []),
-        "counts": {"places": len(places), "tracks": len(tr), "landmarks": len(lm),
-                   "groups": len(terr["groups"])},
+        "counts": {"places": len(pl), "tracks": len(tr), "landmarks": len(lm)},
     })
     print("Done. Wrote " + OUT)
 

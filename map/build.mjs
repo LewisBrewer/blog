@@ -11,6 +11,7 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 import { vectorize } from './vectorize.mjs';
+import { growTerritories } from './territory.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.dirname(HERE);
@@ -41,7 +42,7 @@ function hashInputs() {
     }
   };
   walk(SRC);
-  for (const f of ['build.mjs', 'vectorize.mjs', 'viewer.js', 'map.css']) {
+  for (const f of ['build.mjs', 'vectorize.mjs', 'territory.mjs', 'viewer.js', 'map.css']) {
     const p = path.join(HERE, f);
     if (fs.existsSync(p)) h.update(f + fs.readFileSync(p));
   }
@@ -186,12 +187,9 @@ async function whenuaTiles(meta, legend) {
 
 // ── territories ───────────────────────────────────────────────
 function territories(meta) {
-  const t = readJson('territory.json');
-  const N = t.w * t.h;
-  const lab = new Int32Array(N);
-  let at = 0;
-  for (let i = 0; i < t.rle.length; i += 2) { lab.fill(t.rle[i] - 1, at, at + t.rle[i + 1]); at += t.rle[i + 1]; }
-  if (at !== N) throw new Error(`territory grid decodes to ${at} cells, expected ${N}`);
+  const t = growTerritories(SRC, readJson('places.json'), readJson('tracks.json'));
+  const N = t.w * t.h, lab = t.lab;
+  log('territory seeds:', t.seeds, 'places,', t.rough, 'rough-country areas');
   const vec = vectorize(lab, t.w, t.h, { smooth: 2, radius: 2, tol: 0.12 });
   // vertex (i, j) of the cell grid → Leaflet units (full px / 64)
   const k = (t.cell * meta.PPD) / 64;

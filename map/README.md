@@ -23,7 +23,7 @@ ticked to download a copy you can open from a folder.
 | Layer | Source in Core Data |
 |---|---|
 | Places, holders, seats, populations | `Settlements_v2/places.csv`, `place_occupancy.csv`, `place_links.csv` (refuge pā) |
-| Territories | `Settlements_v2/parcels.csv` + `parcels_grid.json`: each parcel follows the 1810 holder of its host place |
+| Territories | grown from the places, as the Place Editor does: each place with an 1810 holder spreads over land by terrain cost (`terrain_grid.bin.gz`, `terrain_cost_weights.json`, tracks, and the editor's rough-country areas). Moving or adding a place moves its territory |
 | Tracks and waterways | `Settlements_v2/tracks.csv` |
 | Whenua (plant cover) and landmarks | `Whenua/` saved files when present, otherwise the snapshot built into `Whenua_Editor.html` |
 | Base map | `basemap_tiles/` |
@@ -48,6 +48,7 @@ edge and a note.
 ```
 map/export_public.py   PC side: Core Data → map-src/ (Python standard library only)
 map/build.mjs          GitHub side: map-src/ → map-build/ (tiles, territory shapes, data.js)
+map/territory.mjs      grows the 1810 territories, ported from the Place Editor's computeTerr
 map/vectorize.mjs      territory borders, ported from the Place Editor's vec.js
 map/viewer.js          the page's script (Leaflet 1.9.4)
 map/map.css            the page's styles, on top of site.css

@@ -1,0 +1,66 @@
+{
+ "format": "taua-terrain-grid-2",
+ "w": 1534,
+ "h": 1534,
+ "w0": 165.79373,
+ "n0": -34.12567,
+ "cell": 0.008666666666666666,
+ "planes": [
+  "cls",
+  "elev_12m",
+  "slope_q4",
+  "river_rank",
+  "forest_type"
+ ],
+ "cls": {
+  "0": "sea",
+  "1": "lake",
+  "2": "forest",
+  "3": "forest-scrub mosaic",
+  "4": "fern/scrub",
+  "5": "grassland",
+  "6": "swamp",
+  "7": "dune/sand",
+  "8": "subalpine tussock",
+  "9": "rock/alpine",
+  "10": "wide river",
+  "11": "clearing (1810)",
+  "12": "garden (1810)"
+ },
+ "forest_type": {
+  "1": "kauri",
+  "2": "kahikatea/podocarp lowland",
+  "3": "wetland",
+  "4": "rimu/tawa",
+  "5": "dunes",
+  "6": "other forest",
+  "7": "beech",
+  "8": "Hall's totara montane",
+  "9": "above treeline"
+ },
+ "sources": "LINZ Topo50 (coast, lakes, rivers, swamp, sand, contours), Landcare potential vegetation, 1830 vegetation maps (georeferenced)",
+ "gardens_1810": {
+  "built": "2026-09-25",
+  "cells_per_person": 0.005,
+  "clear_ratio": 3.5,
+  "garden_base_multiplier": {
+   "0": 0.4,
+   "1": 0.7,
+   "2": 0.9,
+   "3": 1.0,
+   "4": 1.3,
+   "5": 1.6
+  },
+  "kumara_limit": "full north of -42, tapering to none at -44",
+  "suitability": {
+   "grassland": 1.0,
+   "fern/scrub": 0.95,
+   "mosaic": 0.8,
+   "dune/sand": 0.55,
+   "forest": 0.45
+  },
+  "cuts": "slope over 14 degrees or elevation over 300 m grows nothing; a river within one cell adds a fifth",
+  "radius_cells": 8,
+  "note": "A model, not a source. Every cell is derived from population and terrain."
+ }
+}
