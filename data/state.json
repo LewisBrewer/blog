@@ -256,8 +256,8 @@
       "slug": "map-of-aotearoa-1810",
       "title": "A map of Aotearoa in 1810",
       "date": "2026-11-04",
-      "dateModified": "2026-11-04",
-      "contentHash": "739ecd9ec0f9",
+      "dateModified": "2026-11-08",
+      "contentHash": "31ba2462a28a",
       "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
       "docName": "Taua_Blog_drafts",
       "tabIds": [
@@ -270,7 +270,7 @@
   "docs": {
     "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo": {
       "name": "Taua_Blog_drafts",
-      "modifiedTime": "2026-11-04T05:08:15.295Z"
+      "modifiedTime": "2026-11-07T22:55:10.830Z"
     }
   },
   "converterVersion": 1
