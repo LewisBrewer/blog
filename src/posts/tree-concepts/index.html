@@ -1,0 +1,57 @@
+---json
+{
+  "title": "Tree Concepts",
+  "summary": "First experiments in trees, grouping and cutting down asset requirements and some 3d tests",
+  "date": "2026-11-11",
+  "topics": [
+    "Art",
+    "Campaign map"
+  ],
+  "series": "Map",
+  "seriesSlug": "map",
+  "seriesAll": [
+    {
+      "name": "Map",
+      "slug": "map"
+    },
+    {
+      "name": "Taua dev log",
+      "slug": "taua-dev-log"
+    }
+  ],
+  "slug": "tree-concepts",
+  "permalink": "/tree-concepts/",
+  "cover": {
+    "src": "/media/tree-concepts/a9571786a9-1280.webp",
+    "thumb": "/media/tree-concepts/a9571786a9-640.webp",
+    "avif": "/media/tree-concepts/a9571786a9-640.avif 640w, /media/tree-concepts/a9571786a9-1280.avif 1280w, /media/tree-concepts/a9571786a9-1920.avif 1920w",
+    "webp": "/media/tree-concepts/a9571786a9-640.webp 640w, /media/tree-concepts/a9571786a9-1280.webp 1280w, /media/tree-concepts/a9571786a9-1920.webp 1920w",
+    "width": 1920,
+    "height": 770,
+    "alt": "",
+    "og": "/media/tree-concepts/a9571786a9-og.jpg"
+  },
+  "wordCount": 654,
+  "readingMinutes": 3,
+  "draft": false,
+  "source": {
+    "doc": "Taua_Blog_drafts",
+    "tab": "Tree Concepts"
+  },
+  "dateModified": "2026-11-11"
+}
+---
+<p>Before modelling a single tree for Taua’s campaign map, I drew up a quick size chart for a slice of Northland. I split it into forest, scrub and coast, and lined every species up against a 45 metre scale. Kauri and kahikatea sit at the top. Below them come the canopy trees, mamaku and nīkau, then mānuka, harakeke and bracken. Tī kōuka, pōhutukawa and toetoe hold the coast.</p>
+<figure class="figure"><picture><source type="image/avif" srcset="/media/tree-concepts/a9571786a9-640.avif 640w, /media/tree-concepts/a9571786a9-1280.avif 1280w, /media/tree-concepts/a9571786a9-1920.avif 1920w" sizes="(min-width: 1100px) 1040px, 100vw"><source type="image/webp" srcset="/media/tree-concepts/a9571786a9-640.webp 640w, /media/tree-concepts/a9571786a9-1280.webp 1280w, /media/tree-concepts/a9571786a9-1920.webp 1920w" sizes="(min-width: 1100px) 1040px, 100vw"><img src="/media/tree-concepts/a9571786a9-1280.webp" alt="" width="1920" height="770" fetchpriority="high" decoding="async"></picture></figure>
+<p>The chart showed me a big problem straight away. If I built every species at every age for every biome, I’d be buried in assets. And on a campaign map, nobody zooms in far enough to tell a pūriri from a taraire. So I grouped them into 4 classes and then merged as many as possible, which cut the plan from 45 models to around 18ish.</p>
+<p><strong>Hero assets</strong><br>Heroes stand about twice as tall as the canopy, so they poke out through the top of the forest. In Northland that means kauri and kahikatea. In open country or on the coast, a hero can stand alone: a pōhutukawa on a headland, or a rātā left standing in cleared ground.</p>
+<p>Heroes will also matter in play. Each area will have hero slots that fill or empty as the forest changes. I haven’t settled the formula yet, but the aim is that you can count the giants and see how much old forest a region has left, so at a glance you can see how rich a Kauri forest is in a particular area and how much has been milled.</p>
+<p><strong>Canopy</strong><br>The canopy makes up most of the forest, and it’s generic on purpose. Five clusters cover the whole country: northern broadleaf, lowland podocarp, beech, coastal and montane. Each one is a set of soft, rounded blobs, there for mass and colour rather than telling species apart.</p>
+<p><strong>In-betweens</strong><br>Mamaku, nīkau and tī kōuka don’t fit either group. They’re too short to be heroes, and their shapes are too distinctive to melt into a canopy blob. You can recognise a tree fern crown or a cabbage tree’s tufted head from a long way off, and both say Aotearoa. They get their own small class that jutts out of forest canopys, and tī kōuka also dots open ground.</p>
+<p><strong>Ground clutter</strong><br>Clutter dresses up the open ground with toetoe, mānuka, harakeke and bracken. It breaks up flat terrain and gives scrub and coast their own texture.</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">Class</th><th scope="col">Asset</th><th scope="col">Covers</th><th scope="col">Where</th></tr></thead><tbody><tr><td>Hero</td><td>Kauri</td><td></td><td>Upper North Island</td></tr><tr><td>Hero</td><td>Kahikatea</td><td></td><td>Swamp and lowland forest</td></tr><tr><td>Hero</td><td>Rimu</td><td></td><td>Podocarp forest</td></tr><tr><td>Hero</td><td>Tōtara</td><td></td><td>Lowland and inland forest</td></tr><tr><td>Hero</td><td>Rātā</td><td>northern, southern</td><td>Forest, cleared ground</td></tr><tr><td>Hero</td><td>Pōhutukawa</td><td></td><td>Northern coast</td></tr><tr><td>In-between</td><td>Tree fern</td><td>mamaku, ponga</td><td>Mid-storey, forest edges</td></tr><tr><td>In-between</td><td>Nīkau</td><td></td><td>Lowland forest</td></tr><tr><td>In-between</td><td>Tī kōuka</td><td></td><td>Open ground, coast</td></tr><tr><td>Canopy</td><td>Northern broadleaf</td><td>taraire, pūriri, kohekohe</td><td>Northland, Auckland</td></tr><tr><td>Canopy</td><td>Lowland podocarp</td><td>tawa, mataī, miro, hīnau</td><td>North Island lowlands</td></tr><tr><td>Canopy</td><td>Beech</td><td>tawhai and kin</td><td>Ranges, Te Waipounamu</td></tr><tr><td>Canopy</td><td>Coastal broadleaf</td><td>karaka, ngaio, karo</td><td>Coastal fringe</td></tr><tr><td>Canopy</td><td>Montane</td><td>kāmahi, Hall’s tōtara</td><td>Uplands, Central Plateau</td></tr><tr><td>Clutter</td><td>Toetoe</td><td></td><td>Open ground, coast</td></tr><tr><td>Clutter</td><td>Mānuka</td><td>mānuka, kānuka</td><td>Scrub, cleared land</td></tr><tr><td>Clutter</td><td>Harakeke</td><td></td><td>Wetland, open ground</td></tr><tr><td>Clutter</td><td>Bracken</td><td></td><td>Fernland, cleared land</td></tr></tbody></table></div>
+<figure class="figure figure--gallery"><div class="gallery gallery--3"><picture><source type="image/avif" srcset="/media/tree-concepts/ff67342b14-640.avif 640w, /media/tree-concepts/ff67342b14-1280.avif 1280w, /media/tree-concepts/ff67342b14-1299.avif 1299w" sizes="(min-width: 1100px) 500px, 50vw"><source type="image/webp" srcset="/media/tree-concepts/ff67342b14-640.webp 640w, /media/tree-concepts/ff67342b14-1280.webp 1280w, /media/tree-concepts/ff67342b14-1299.webp 1299w" sizes="(min-width: 1100px) 500px, 50vw"><img src="/media/tree-concepts/ff67342b14-1280.webp" alt="" width="1299" height="715" loading="lazy" decoding="async"></picture><picture><source type="image/avif" srcset="/media/tree-concepts/d26f6cd5e3-640.avif 640w, /media/tree-concepts/d26f6cd5e3-1280.avif 1280w, /media/tree-concepts/d26f6cd5e3-1478.avif 1478w" sizes="(min-width: 1100px) 500px, 50vw"><source type="image/webp" srcset="/media/tree-concepts/d26f6cd5e3-640.webp 640w, /media/tree-concepts/d26f6cd5e3-1280.webp 1280w, /media/tree-concepts/d26f6cd5e3-1478.webp 1478w" sizes="(min-width: 1100px) 500px, 50vw"><img src="/media/tree-concepts/d26f6cd5e3-1280.webp" alt="" width="1478" height="718" loading="lazy" decoding="async"></picture><picture><source type="image/avif" srcset="/media/tree-concepts/5ca5b2a596-640.avif 640w, /media/tree-concepts/5ca5b2a596-1280.avif 1280w, /media/tree-concepts/5ca5b2a596-1487.avif 1487w" sizes="(min-width: 1100px) 500px, 50vw"><source type="image/webp" srcset="/media/tree-concepts/5ca5b2a596-640.webp 640w, /media/tree-concepts/5ca5b2a596-1280.webp 1280w, /media/tree-concepts/5ca5b2a596-1487.webp 1487w" sizes="(min-width: 1100px) 500px, 50vw"><img src="/media/tree-concepts/5ca5b2a596-1280.webp" alt="" width="1487" height="717" loading="lazy" decoding="async"></picture></div></figure>
+<p>These are quick 3D tests in Blender. I’m checking how the canopy reads when it clumps together, with taller trees rising out of it.</p>
+<hr>
+<p>Notes from the brainstorm:</p>
+<ul><li><strong>Rimu and tōtara</strong> are new heroes I’ve suggested for forests outside Northland. Rimu still sits in the Northland canopy blob as well.</li><li><strong>Some species share an asset and differ only by texture set.</strong> Just as trees have different texture sets so to can species. Ponga uses the mamaku model, kānuka uses the mānuka model, and southern rātā uses the northern rātā model.</li><li><strong>Gaps worth filling later:</strong><ul><li>Raupō and tussock, since the clutter has nothing for wetland or high country yet.</li><li>Kaikawaka as a montane hero.</li><li>Fruit trees for 1810–1872 garden land. Fact-check how widespread they were before using them. Might be able to use a scaled down canopy tree.</li></ul></li></ul>
