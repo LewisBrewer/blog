@@ -284,8 +284,8 @@
       "slug": "terrain",
       "title": "Terrain First Pass",
       "date": "2026-11-13",
-      "dateModified": "2026-11-13",
-      "contentHash": "4e1138f868ca",
+      "dateModified": "2026-11-14",
+      "contentHash": "a51f4576e84a",
       "docId": "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo",
       "docName": "Taua_Blog_drafts",
       "tabIds": [
@@ -298,7 +298,7 @@
   "docs": {
     "1ddRTipJdFlIMRlvI_7GlAy0PfNam2C8LXs7mD1cuvOo": {
       "name": "Taua_Blog_drafts",
-      "modifiedTime": "2026-11-13T04:07:11.968Z"
+      "modifiedTime": "2026-11-13T06:13:47.482Z"
     }
   },
   "converterVersion": 1
